@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecorBoard", "DecorBoard\DecorBoard.csproj", "{B00154FA-C110-4B0A-91EF-982AC8A5D61D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B00154FA-C110-4B0A-91EF-982AC8A5D61D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B00154FA-C110-4B0A-91EF-982AC8A5D61D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B00154FA-C110-4B0A-91EF-982AC8A5D61D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B00154FA-C110-4B0A-91EF-982AC8A5D61D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {559B78B5-2DE0-4C93-9FD3-C4384AF8F2AA}
+	EndGlobalSection
+EndGlobal
