@@ -1,0 +1,51 @@
+.headerContainer {
+    display: block;
+    justify-content: center;
+    margin: auto;
+    width: 75%;
+}
+
+.logo {
+    background-image: url("../images/BannerLogo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 350px;
+    justify-content: center;
+    margin: auto;
+    width: 100%;
+}
+
+.mainContainer {
+    display: flex;
+    flex: 2;
+    justify-content: space-between;
+    margin: auto;
+    text-align: center;
+    width: 90%;
+}
+
+.navContainer {
+    grid-column: 1;
+    justify-content: center;
+    width: 15%;
+}
+
+.viewContainer {
+    border: 1px solid purple;
+    width: 85%;
+}
+
+.navColumn {
+    justify-content: center;
+    padding: 0px
+}
+
+.navRow {
+    border: 1px dotted green;
+    font-size: 15px;
+    height: 90px;
+    justify-content: center;
+    margin: 0px auto 15px auto;
+    padding: 10px;
+    width: 90px;
+}
