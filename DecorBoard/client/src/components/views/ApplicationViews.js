@@ -23,15 +23,19 @@ export const ApplicationViews = () => {
           </Route>
 
           <Route path="/register">
-            <Register />
+            {isLoggedIn ? <Register /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/design">
-            <RoomForm />
+            {isLoggedIn ? <RoomForm /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/room">
-            <Room />
+            {isLoggedIn ? <Room /> : <Redirect to="/login" />}
+          </Route>
+
+          <Route path="/stockRoom">
+            {isLoggedIn ? <Room /> : <Redirect to="/login" />}
           </Route>
 
         </Switch>

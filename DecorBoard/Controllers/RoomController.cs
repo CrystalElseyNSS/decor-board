@@ -18,10 +18,10 @@ namespace DecorBoard.Controllers
             _roomRepository = new RoomRepository(context);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetByUserId(int userId)
+        [HttpGet("room/{id}")]
+        public IActionResult GetRoomById(int id)
         {
-            var room = _roomRepository.GetByUserId(userId);
+            var room = _roomRepository.GetRoomById(id);
             if (room == null)
             {
                 return NotFound();
@@ -29,12 +29,18 @@ namespace DecorBoard.Controllers
             return Ok(room);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetRoomsByUserId(int userId)
+        {
+            var rooms = _roomRepository.GetRoomsByUserId(userId);
+            return Ok(rooms);
+        }
+
         [HttpPost]
         public IActionResult Register(Room room)
         {
             _roomRepository.Add(room);
-            return CreatedAtAction(
-                nameof(GetByUserId), new { userProfileId = room.UserProfileId }, room);
+            return CreatedAtAction(nameof(GetRoomById), new { id = room.Id }, room);
         }
     }
 

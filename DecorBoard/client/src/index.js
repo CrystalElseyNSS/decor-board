@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import { App } from './App';
+import { UserProfileProvider } from './providers/UserProfileProvider';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -13,7 +14,9 @@ firebase.initializeApp(firebaseConfig)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UserProfileProvider>
+      <App />
+    </UserProfileProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )

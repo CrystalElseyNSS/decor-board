@@ -31,7 +31,7 @@ export const RoomForm = () => {
                                     required
                                     type="text"
                                     placeholder="Enter the Name of the Room"
-                                    ref={roomName}
+                                    innerRef={roomName}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -39,7 +39,7 @@ export const RoomForm = () => {
                                     required
                                     type="text"
                                     placeholder="Enter your Image Location"
-                                    ref={imageLocation}
+                                    innerRef={imageLocation}
                                 />
                             </FormGroup>
                             <Button>Submit</Button>
