@@ -12,14 +12,15 @@ import './components/views/Layout.css';
 
 export const App = () => {
   const { isLoggedIn } = useContext(UserProfileContext)
+  const [appView, setAppView] = useState({})
 
   return (
     <div>
       <Router>
         <Header />
         <main className="mainContainer">
-          {isLoggedIn ? <NavBar /> : <div></div>}
-          <ApplicationViews />
+          {isLoggedIn ? <NavBar setAppView={setAppView}/> : <div></div>}
+          <ApplicationViews appView={appView}/>
         </main>
       </Router>
     </div>

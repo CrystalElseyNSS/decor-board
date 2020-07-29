@@ -4,19 +4,13 @@ import { Link } from 'react-router-dom';
 import { RoomContext } from '../../providers/RoomProvider';
 import "../views/Layout.css";
 
-export const RoomNav = ({ room }) => {
-    // const { setCurrentRoomView } = useContext(RoomContext)
+export const RoomNav = ({ room, setAppView }) => {
     
-    // useEffect(() => {        
-    //     setCurrentRoomView(room);        
-    //     // eslint-disable-next-line       
-    // }, [])
-
     return (
         <>
            <Row className="navRow">
                 <Link 
-
+                    onClick={() => setAppView(room)}
                     to={`/room/room/${room.id}`}
                 >
                     {room.roomName}

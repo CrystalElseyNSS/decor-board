@@ -5,7 +5,7 @@ import { RoomContext } from '../../providers/RoomProvider';
 import { RoomNav } from '../rooms/RoomNav';
 import './Layout.css';
 
-export const NavBar = () => {
+export const NavBar = (props) => {
     const { rooms, getRooms } = useContext(RoomContext)
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
 
@@ -14,8 +14,6 @@ export const NavBar = () => {
         // eslint-disable-next-line       
     }, []);
 
-    console.log(currentUser)
-    console.log(rooms)
     return (
         <>
             <section className="navContainer">
@@ -26,7 +24,7 @@ export const NavBar = () => {
 
                     <div className="roomNav">
                         {rooms.map(r =>
-                            <RoomNav key={r.id} room={r} />
+                            <RoomNav key={r.id} room={r} {...props}/>
                         )}
                     </div>
 
