@@ -8,7 +8,7 @@ export const Room = ({ room }) => {
     return (
         <>
             <Row className="navRow">
-                <NavLink to="/room">${room.roomName}</NavLink>                
+                <NavLink to="/room/room">{room.roomName}</NavLink>                
             </Row>
         </>
     )

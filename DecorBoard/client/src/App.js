@@ -15,13 +15,11 @@ export const App = () => {
   return (
     <div>
       <Router>
-        <RoomProvider>
-          <Header />
-          <main className="mainContainer">
-            {isLoggedIn ? <NavBar /> : <div></div>}
-            <ApplicationViews />
-          </main>
-        </RoomProvider>
+        <Header />
+        <main className="mainContainer">
+          {isLoggedIn ? <NavBar /> : <div></div>}
+          <ApplicationViews />
+        </main>
       </Router>
     </div>
   )

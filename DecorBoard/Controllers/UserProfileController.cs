@@ -10,8 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DecorBoard.Controllers
 {
-
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserProfileController : ControllerBase

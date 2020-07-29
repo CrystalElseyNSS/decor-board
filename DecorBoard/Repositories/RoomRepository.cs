@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DecorBoard.Data;
 using DecorBoard.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DecorBoard.Repositories
 {
@@ -16,15 +17,16 @@ namespace DecorBoard.Repositories
             _context = context;
         }
 
-        public Room GetRoomById(int id)
+        public Room GetById(int id)
         {
             return _context.Room
                 .FirstOrDefault(r => r.Id == id);
         }
 
-        public List<Room> GetRoomsByUserId(int userId)
+        public List<Room> GetUserRooms(int userId)
         {
             return _context.Room
+                .Include(r => r.UserProfile)
                 .Where(r => r.UserProfileId == userId)
                 .ToList();
         }
