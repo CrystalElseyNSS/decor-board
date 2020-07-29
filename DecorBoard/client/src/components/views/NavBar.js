@@ -2,16 +2,18 @@ import React, { useContext, useEffect } from 'react';
 import { Col, Row } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import { RoomContext } from '../../providers/RoomProvider';
-import { Room } from "../rooms/Room";
+import { RoomNav } from '../rooms/RoomNav';
 import './Layout.css';
 
 export const NavBar = () => {
     const { rooms, getRooms } = useContext(RoomContext)
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
+
     useEffect(() => {        
         getRooms(currentUser.id);        
         // eslint-disable-next-line       
     }, []);
+
     console.log(currentUser)
     console.log(rooms)
     return (
@@ -22,9 +24,9 @@ export const NavBar = () => {
                         <NavLink to="/design">Design a New Room!</NavLink>
                     </Row>
 
-                    <div className="roomContainer">
+                    <div className="roomNav">
                         {rooms.map(r =>
-                            <Room key={r.id} room={r} />
+                            <RoomNav key={r.id} room={r} />
                         )}
                     </div>
 

@@ -1,5 +1,5 @@
 // React imports: 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 // Component imports: 
 import { UserProfileContext } from './providers/UserProfileProvider';
@@ -12,6 +12,7 @@ import './components/views/Layout.css';
 
 export const App = () => {
   const { isLoggedIn } = useContext(UserProfileContext)
+
   return (
     <div>
       <Router>

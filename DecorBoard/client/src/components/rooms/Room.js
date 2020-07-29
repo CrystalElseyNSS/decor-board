@@ -1,15 +1,22 @@
-import React from 'react';
-import { Row } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
-import "../views/Layout.css";
+import React, { useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
+import { RoomContext } from '../../providers/RoomProvider';
+import "./Room.css";
 
-export const Room = ({ room }) => {
+export const Room = () => {
+    const { currentRoomView, getRoomById } = useContext(RoomContext)
+
+    const { id } = useParams();
     
+    useEffect(() => {
+        getRoomById(id);
+    }, []);
+
     return (
         <>
-            <Row className="navRow">
-                <NavLink to="/room/room">{room.roomName}</NavLink>                
-            </Row>
+            <section className="roomContainer">
+                <h3>{currentRoomView.roomName}</h3>
+            </section>
         </>
     )
 }
