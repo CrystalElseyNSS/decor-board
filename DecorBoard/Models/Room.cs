@@ -22,5 +22,6 @@ namespace DecorBoard.Models
         [MaxLength(25)]
         public string ImageLocation { get; set; }
 
+  
     }
 }

@@ -1,13 +1,15 @@
-import React from "react";
-import "./Room.css";
+import React from 'react';
+import { Row } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
+import "../views/Layout.css";
 
 export const Room = ({ room }) => {
     
     return (
         <>
-            <section className="roomContainer">
-                <p>This is a Room</p>
-            </section>
+            <Row className="navRow">
+                <NavLink to="/room">${room.roomName}</NavLink>                
+            </Row>
         </>
     )
 }

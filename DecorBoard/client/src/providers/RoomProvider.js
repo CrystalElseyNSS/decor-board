@@ -1,16 +1,18 @@
 import React, { useState, createContext, useContext } from "react";
 import { UserProfileContext } from "./UserProfileProvider";
+import { useHistory } from "react-router-dom";
 
 export const RoomContext = createContext();
 
 export const RoomProvider = ( props ) => {
-    const apiUrl = "/api/room/";
+    const apiUrl = "/api/room";
     const { getToken } = useContext(UserProfileContext)
     const [rooms, setRooms] = useState([])
+    const history = useHistory();
     
     const getRooms = (userId) => {
-        getToken().then((token) =>
-        fetch(`apiUrl${userId}`, {
+        return getToken().then((token) =>
+        fetch(`${apiUrl}/${userId}`, {
             method: "GET",
             headers: {
             Authorization: `Bearer ${token}`
@@ -21,7 +23,7 @@ export const RoomProvider = ( props ) => {
     }
 
     const addRoom = (room) => {
-        getToken().then((token) =>
+        return getToken().then((token) =>
             fetch(apiUrl, {
                 method: "POST",
                 headers: {
@@ -31,7 +33,8 @@ export const RoomProvider = ( props ) => {
                 body: JSON.stringify(room)
             })
             .then(resp => resp.json())
-            .then(getRooms)
+            .then(history.push())
+            .then(() => getRooms(room.userProfileId))
         )
     }
 

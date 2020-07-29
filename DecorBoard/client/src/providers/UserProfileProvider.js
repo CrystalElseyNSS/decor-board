@@ -5,15 +5,14 @@ import "firebase/auth";
 
 export const UserProfileContext = createContext();
 
-export const UserProfileProvider = ( props ) => {
-  const apiUrl = "/api/userProfile";
-  const userProfile = sessionStorage.getItem("userProfile");
-  const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
-  const [isFirebaseReady, setIsFirebaseReady] = useState(false);
+export const UserProfileProvider = (props) => {
+  const apiUrl = "/api/userProfile"
+  const userProfile = sessionStorage.getItem("userProfile")
+  const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null)
+  const [isFirebaseReady, setIsFirebaseReady] = useState(false)
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((u) => {
-      setIsLoggedIn(!!u)
       setIsFirebaseReady(true)
     })
   }, [])
@@ -22,6 +21,7 @@ export const UserProfileProvider = ( props ) => {
     return firebase.auth().signInWithEmailAndPassword(email, pw)
       .then((signInResponse) => getUserProfile(signInResponse.user.uid))
       .then((userProfile) => sessionStorage.setItem("userProfile", JSON.stringify(userProfile)))
+      .then(() => setIsLoggedIn(true))
   }
 
   const logout = () => {
@@ -63,7 +63,7 @@ export const UserProfileProvider = ( props ) => {
     <UserProfileContext.Provider value={{ isLoggedIn, login, logout, register, getToken }}>
       {isFirebaseReady
         ? props.children
-        : <Spinner className="app-spinner dark"/>}
+        : <Spinner className="app-spinner dark" />}
     </UserProfileContext.Provider>
   )
 }

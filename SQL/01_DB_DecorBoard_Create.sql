@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS [UserProfile];
 GO
 
 CREATE TABLE [UserProfile] (
-  [Id] integer PRIMARY KEY IDENTITY NOT NULL,
+  [Id] integer PRIMARY KEY IDENTITY (1,1),
   [FirebaseUserId] varchar(50) NOT NULL,
   [FirstName] varchar(25) NOT NULL,
   [LastName] varchar(25) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE [UserProfile] (
 GO
 
 CREATE TABLE [Room] (
-  [Id] integer PRIMARY KEY IDENTITY NOT NULL,
+  [Id] integer PRIMARY KEY IDENTITY (1,1),
   [UserProfileId] integer NOT NULL,
   [RoomName] varchar(25) NOT NULL,
   [ImageLocation] varchar(25) NOT NULL
@@ -36,13 +36,13 @@ CREATE TABLE [Room] (
 GO
 
 CREATE TABLE [Category] (
-  [Id] integer PRIMARY KEY IDENTITY NOT NULL,
+  [Id] integer PRIMARY KEY IDENTITY (1,1),
   [CategoryName] varchar(25) NOT NULL
 )
 GO
 
 CREATE TABLE [Item] (
-  [Id] integer PRIMARY KEY IDENTITY NOT NULL,
+  [Id] integer PRIMARY KEY IDENTITY (1,1),
   [CategoryId] integer NOT NULL,
   [ItemName] varchar (50) NOT NULL,
   [ImageLocation] varchar(25) NOT NULL,
@@ -53,7 +53,7 @@ GO
 
 
 CREATE TABLE [RoomItem] (
-  [Id] integer PRIMARY KEY IDENTITY NOT NULL,
+  [Id] integer PRIMARY KEY IDENTITY (1,1),
   [RoomId] integer NOT NULL,
   [ItemId] integer NOT NULL
   CONSTRAINT [FK_RoomItem_Room] FOREIGN KEY ([RoomId]) REFERENCES [Room] ([Id]),

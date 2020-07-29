@@ -25,5 +25,7 @@ namespace DecorBoard.Models
         [Required]
         [MaxLength(25)]
         public string Email { get; set; }
+
+        
     }
 }
