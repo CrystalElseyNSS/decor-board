@@ -17,7 +17,7 @@ export const RoomProvider = ( props ) => {
             headers: {
             Authorization: `Bearer ${token}`
             }
-        })
+        }) 
         .then(resp => resp.json())
         .then(setRooms))
     }

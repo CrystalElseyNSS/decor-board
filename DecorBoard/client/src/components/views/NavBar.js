@@ -8,12 +8,12 @@ import './Layout.css';
 export const NavBar = () => {
     const { rooms, getRooms } = useContext(RoomContext)
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
-
     useEffect(() => {        
         getRooms(currentUser.id);        
         // eslint-disable-next-line       
     }, []);
-    
+    console.log(currentUser)
+    console.log(rooms)
     return (
         <>
             <section className="navContainer">

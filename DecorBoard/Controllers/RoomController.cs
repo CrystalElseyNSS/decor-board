@@ -21,18 +21,14 @@ namespace DecorBoard.Controllers
         [HttpGet("room/{id}")]
         public IActionResult GetRoomById(int id)
         {
-            var room = _roomRepository.GetRoomById(id);
-            if (room == null)
-            {
-                return NotFound();
-            }
+            var room = _roomRepository.GetById(id);
             return Ok(room);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetRoomsByUserId(int userId)
+        public IActionResult GetRoomsByUserId(int id)
         {
-            var rooms = _roomRepository.GetRoomsByUserId(userId);
+            var rooms = _roomRepository.GetUserRooms(id);
             return Ok(rooms);
         }
 
