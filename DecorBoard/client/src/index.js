@@ -17,7 +17,7 @@ ReactDOM.render(
   <React.StrictMode>
     <UserProfileProvider>
       <RoomProvider>
-      <App />
+        <App />
       </RoomProvider>
     </UserProfileProvider>
   </React.StrictMode>,

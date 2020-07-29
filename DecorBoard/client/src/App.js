@@ -1,5 +1,5 @@
 // React imports: 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 // Component imports: 
 import { UserProfileContext } from './providers/UserProfileProvider';
@@ -12,13 +12,15 @@ import './components/views/Layout.css';
 
 export const App = () => {
   const { isLoggedIn } = useContext(UserProfileContext)
+  const [appView, setAppView] = useState({})
+
   return (
     <div>
       <Router>
         <Header />
         <main className="mainContainer">
-          {isLoggedIn ? <NavBar /> : <div></div>}
-          <ApplicationViews />
+          {isLoggedIn ? <NavBar setAppView={setAppView}/> : <div></div>}
+          <ApplicationViews appView={appView}/>
         </main>
       </Router>
     </div>
