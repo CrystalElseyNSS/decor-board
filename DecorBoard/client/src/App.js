@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 // Component imports: 
 import { UserProfileContext } from './providers/UserProfileProvider';
-import { RoomProvider } from './providers/RoomProvider';
 import { Header } from './components/views/Header';
 import { NavBar } from './components/views/NavBar';
 import { ApplicationViews } from './components/views/ApplicationViews';
@@ -18,10 +17,10 @@ export const App = () => {
     <div>
       <Router>
         <Header />
-        <main className="mainContainer">
-          {isLoggedIn ? <NavBar setAppView={setAppView}/> : <div></div>}
-          <ApplicationViews appView={appView}/>
-        </main>
+          <main className="mainContainer">
+            {isLoggedIn ? <NavBar setAppView={setAppView} /> : <div></div>}
+            <ApplicationViews appView={appView} />
+          </main>
       </Router>
     </div>
   )

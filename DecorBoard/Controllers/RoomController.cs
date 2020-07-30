@@ -3,6 +3,7 @@ using DecorBoard.Models;
 using DecorBoard.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace DecorBoard.Controllers
 {
