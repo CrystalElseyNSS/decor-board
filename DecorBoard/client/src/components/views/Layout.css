@@ -31,7 +31,6 @@
 }
 
 .viewContainer {
-    border: 1px solid purple;
     width: 85%;
 }
 
@@ -40,12 +39,3 @@
     padding: 0px
 }
 
-.navRow {
-    border: 1px dotted green;
-    font-size: 15px;
-    height: 90px;
-    justify-content: center;
-    margin: 0px auto 15px auto;
-    padding: 10px;
-    width: 90px;
-}

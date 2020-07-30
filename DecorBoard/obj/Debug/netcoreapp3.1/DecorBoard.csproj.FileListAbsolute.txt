@@ -53,7 +53,6 @@ C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\bin\Deb
 C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\obj\Debug\netcoreapp3.1\DecorBoard.csprojAssemblyReference.cache
 C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\obj\Debug\netcoreapp3.1\DecorBoard.AssemblyInfoInputs.cache
 C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\obj\Debug\netcoreapp3.1\DecorBoard.AssemblyInfo.cs
 C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\obj\Debug\netcoreapp3.1\DecorBoard.csproj.CoreCompileInputs.cache
@@ -65,3 +64,4 @@ C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\obj\Deb
 C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\obj\Debug\netcoreapp3.1\DecorBoard.dll
 C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\obj\Debug\netcoreapp3.1\DecorBoard.pdb
 C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\obj\Debug\netcoreapp3.1\DecorBoard.genruntimeconfig.cache
+C:\Users\Crystal Elsey\workspace\Capstone\Back-End\DecorBoard\DecorBoard\obj\Debug\netcoreapp3.1\DecorBoard.csprojAssemblyReference.cache

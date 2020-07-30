@@ -1,3 +1,27 @@
 .roomForm {
     justify-content: center;
 }
+
+.roomContainer {
+    border: 10px inset #ddd;
+    border-radius: 4px;
+    height: 100%;
+    padding: 5px;
+    width: 100%;
+}
+
+.navText {
+    color: gray;
+    font-weight: bolder;
+}
+
+.navRow {
+    border: 4px outset whitesmoke;
+    background-color: #fcbf63;
+    font-size: 15px;
+    height: 90px;
+    justify-content: center;
+    margin: 0px auto 15px auto;
+    padding: 10px;
+    width: 90px;
+}

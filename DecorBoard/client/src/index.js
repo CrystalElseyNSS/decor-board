@@ -7,6 +7,7 @@ import './index.css';
 import { App } from './App';
 import { UserProfileProvider } from './providers/UserProfileProvider';
 import { RoomProvider } from './providers/RoomProvider';
+import { UploadImgProvider } from './providers/UploadImgProvider';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -17,7 +18,9 @@ ReactDOM.render(
   <React.StrictMode>
     <UserProfileProvider>
       <RoomProvider>
-        <App />
+        <UploadImgProvider>
+          <App />
+        </UploadImgProvider>
       </RoomProvider>
     </UserProfileProvider>
   </React.StrictMode>,
