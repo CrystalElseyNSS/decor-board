@@ -19,13 +19,14 @@ namespace Tabloid.Controllers
             _webhost = webhost;
         }
 
-        [HttpGet("{imgURL}")]
-        public IActionResult Get(string imgURL)
-        {
-            var path = Path.Combine(_webhost.WebRootPath, "uploads", imgURL);
-            var imageFileStream = System.IO.File.OpenRead(path);
-            return File(imageFileStream, "image/jpeg");
-        }
+        //[HttpGet("{imgURL}")]
+        //public IActionResult Get(string imgURL)
+        //{
+        //    var path = Path.Combine(_webhost.WebRootPath, "uploads", imgURL);
+        //    var imageFileStream = System.IO.File.OpenRead(path);
+        //    return File(imageFileStream, "image/jpeg");
+        //}
+
         [HttpPost]
         public async Task<IActionResult> Post(IFormFile body)
         {

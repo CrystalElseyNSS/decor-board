@@ -11,9 +11,9 @@ export const RoomProvider = ( props ) => {
     const [currentRoomView, setCurrentRoomView] = useState({})
     const history = useHistory();
     
-    const getRooms = (userId) => {
+    const getRooms = () => {
         return getToken().then((token) =>
-        fetch(`${apiUrl}/${userId}`, {
+        fetch(apiUrl, {
             method: "GET",
             headers: {
             Authorization: `Bearer ${token}`
@@ -46,9 +46,9 @@ export const RoomProvider = ( props ) => {
                 },
                 body: JSON.stringify(room)
             })
-            .then(resp => resp.json())
-            .then(history.push())
-            .then(() => getRooms(room.userProfileId))
+            .then(resp => room = resp.json())
+            // .then(() => room)
+          
         )
     }
 

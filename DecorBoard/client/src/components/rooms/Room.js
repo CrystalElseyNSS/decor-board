@@ -4,28 +4,22 @@ import { RoomContext } from '../../providers/RoomProvider';
 import { UploadImgContext } from '../../providers/UploadImgProvider';
 import "./Room.css";
 
-export const Room = ({ appView }) => {
+export const Room = () => {
     const { currentRoomView, getRoomById } = useContext(RoomContext)
-    const {getImgURL} = useContext(UploadImgContext)
-    let tacoRoom = { roomName: "" }
-    const imgURL = getImgURL(tacoRoom.imageLocation)
+
+    // const { getImgURL } = useContext(UploadImgContext)
+    // const imgURL = getImgURL(currentRoomView.imageLocation)
 
     const { id } = useParams();
     useEffect(() => {
         getRoomById(id)
     }, []);
-
-    if (Object.keys(appView).length !== 0) {
-        tacoRoom = appView
-    } else if (Object.keys(currentRoomView).length !== 0) {
-        tacoRoom = currentRoomView
-    } return (
+    
+    return (
         <>
-            <section className="roomContainer" style={`background-image: ${tacoRoom.imageLocation}`}>
-                <h3>{tacoRoom.roomName}</h3>
+            <section className="roomContainer" style={{backgroundImage: `url(/uploads/` + currentRoomView.imageLocation + `)`}}>
+                <h3>{currentRoomView.roomName}</h3>
             </section>
         </>
     )
 }
-
-

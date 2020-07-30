@@ -6,7 +6,7 @@ import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
 import "./Room.css";
 
 export const RoomForm = () => {
-    const { addRoom } = useContext(RoomContext)
+    const { addRoom, getRoomById, setCurrentRoomView, getRooms } = useContext(RoomContext)
     const { addImg } = useContext(UploadImgContext)
     const history = useHistory()
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"))
@@ -21,8 +21,16 @@ export const RoomForm = () => {
             roomName: roomName.current.value,
             imageLocation: selectedFile.name
         }
+        let newId;
         addRoom(newRoom)
-        addImg(selectedFile)
+            .then((addedRoom) => {
+                newId = addedRoom.id
+                addImg(selectedFile)
+                return addedRoom
+            })
+        // .then(setCurrentRoomView(newRoom))
+        .then((room) => getRooms())
+        .then(() => history.push(`/room/room/${newId}`))
     }
 
     const onFileChange = (e) => {

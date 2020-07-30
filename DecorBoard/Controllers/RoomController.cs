@@ -4,6 +4,7 @@ using DecorBoard.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace DecorBoard.Controllers
 {
@@ -14,9 +15,11 @@ namespace DecorBoard.Controllers
     public class RoomController : ControllerBase
     {
         private readonly RoomRepository _roomRepository;
+        private readonly UserProfileRepository _userProfileRepository;
         public RoomController(ApplicationDbContext context)
         {
             _roomRepository = new RoomRepository(context);
+            _userProfileRepository = new UserProfileRepository(context);
         }
 
         [HttpGet("room/{id}")]
@@ -26,10 +29,11 @@ namespace DecorBoard.Controllers
             return Ok(room);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetRoomsByUserId(int id)
+        [HttpGet()]
+        public IActionResult GetRoomsByCurrentUser()
         {
-            var rooms = _roomRepository.GetUserRooms(id);
+            var currentUser = GetCurrentUserProfile();
+            var rooms = _roomRepository.GetUserRooms(currentUser.Id);
             return Ok(rooms);
         }
 
@@ -38,6 +42,12 @@ namespace DecorBoard.Controllers
         {
             _roomRepository.Add(room);
             return CreatedAtAction(nameof(GetRoomById), new { id = room.Id }, room);
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 
