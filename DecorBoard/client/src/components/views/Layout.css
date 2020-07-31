@@ -31,7 +31,10 @@
 }
 
 .viewContainer {
-    width: 85%;
+    display: flex;
+    flex: 2;
+    margin-left: 10px;
+    width: 70%;
 }
 
 .navColumn {

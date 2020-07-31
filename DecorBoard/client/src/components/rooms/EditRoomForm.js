@@ -1,35 +1,35 @@
-import React, { useRef, useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useRef, useContext, useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import { RoomContext } from '../../providers/RoomProvider';
 import { UploadImgContext } from '../../providers/UploadImgProvider';
-import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Card, CardBody, CardHeader } from 'reactstrap';
 import "./Room.css";
 
-export const RoomForm = () => {
-    const { addRoom, getRoomById, setCurrentRoomView, getRooms } = useContext(RoomContext)
+export const EditRoomForm = () => {
+    const { currentRoomView, updateRoom, getRooms, getRoomById } = useContext(RoomContext)
     const { addImg } = useContext(UploadImgContext)
     const history = useHistory()
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"))
     const roomName = useRef();
     const imageLocation = useRef();
     const [selectedFile, setSelectedFile] = useState(null)
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
+    
+    const { id } = useParams()
+    useEffect(() => {
+        getRoomById(id)
+    }, [])
 
-    const addNewUserRoom = (e) => {
+    const editRoom = (e) => {
         e.preventDefault()
-        const newRoom = {
-            userProfileId: userProfile.id,
+        updateRoom({
+            id: currentRoomView.id,
+            userProfileId: currentUser.id,
             roomName: roomName.current.value,
             imageLocation: selectedFile.name
-        }
-        let newId;
-        addRoom(newRoom)
-            .then((addedRoom) => {
-                newId = addedRoom.id
-                addImg(selectedFile)
-                return addedRoom
-            })
-        .then((room) => getRooms())
-        .then(() => history.push(`/room/room/${newId}`))
+        })
+        addImg(selectedFile)
+        .then(() => history.push(`/room/room/${id}`))
     }
 
     const onFileChange = (e) => {
@@ -38,22 +38,21 @@ export const RoomForm = () => {
 
     return (
         <>
-            <section className="roomForm">
+            <section className="editRoomForm">
                 <Card>
+                    <CardHeader>Edit {currentRoomView.roomName} Board:</CardHeader>
                     <CardBody>
-                        <Form onSubmit={addNewUserRoom}>
+                        <Form onSubmit={editRoom}>
                             <FormGroup>
                                 <Input
                                     autoFocus
-                                    required
                                     type="text"
-                                    placeholder="Enter the Name of the Room"
+                                    placeholder="New Room Name"
                                     innerRef={roomName}
                                 />
                             </FormGroup>
                             <FormGroup>
                                 <Input
-                                    required
                                     type="file"
                                     placeholder="Upload an image"
                                     innerRef={imageLocation}

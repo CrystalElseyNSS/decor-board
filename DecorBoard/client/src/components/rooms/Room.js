@@ -1,25 +1,52 @@
-import React, { useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useState, useRef } from 'react';
+import { Button } from 'reactstrap';
+import { useParams, NavLink } from 'react-router-dom'
 import { RoomContext } from '../../providers/RoomProvider';
-import { UploadImgContext } from '../../providers/UploadImgProvider';
 import "./Room.css";
 
 export const Room = () => {
-    const { currentRoomView, getRoomById } = useContext(RoomContext)
 
-    // const { getImgURL } = useContext(UploadImgContext)
-    // const imgURL = getImgURL(currentRoomView.imageLocation)
-
-    const { id } = useParams();
+    // Gets room id from route parameter and sets application view to the clicked room:
+    const { currentRoomView, getRoomById, deleteRoom } = useContext(RoomContext)
+    const { id } = useParams()
     useEffect(() => {
         getRoomById(id)
-    }, []);
-    
+    }, [])
+
+    // Renders JSX code for room model: 
     return (
         <>
-            <section className="roomContainer" style={{backgroundImage: `url(/uploads/` + currentRoomView.imageLocation + `)`}}>
-                <h3>{currentRoomView.roomName}</h3>
+            <section className="roomContainer" style={{ backgroundImage: `url(/uploads/` + currentRoomView.imageLocation + `)` }}>
+                <section className="itemGrid">
+
+                </section>
             </section>
+            <div className="roomBtns">
+                <div className="header--roomName">{currentRoomView.roomName}</div>
+                <div className="header--roomMenu">Menu:</div>
+                <Button className="btn--roomMenu white">➕</Button>
+                <NavLink to={`/room/editRoom/${currentRoomView.id}`}><Button className="btn--roomMenu white">📝</Button></NavLink>
+                <Button 
+                    className="btn--roomMenu white"
+                    onClick={() =>
+                        window.confirm(
+                          "Are you sure you wish to delete this board?"
+                        ) && deleteRoom(currentRoomView.id)
+                      }>❌
+                </Button>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
         </>
     )
 }

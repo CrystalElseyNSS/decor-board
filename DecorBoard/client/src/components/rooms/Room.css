@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
 .roomForm {
     justify-content: center;
+    width: 80%;
+}
+
+.editRoomForm {
+    justify-content: center;
+    width: 80%;
 }
 
 .roomContainer {
@@ -15,13 +23,54 @@
     font-weight: bolder;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 .navRow {
     border: 4px outset whitesmoke;
     background-color: #fcbf63;
+    box-shadow: 0px 12px 18px -6px rgba(95, 92, 92, 0.5);
+    font-family: 'Montserrat', sans-serif;
     font-size: 15px;
     height: 90px;
     justify-content: center;
     margin: 0px auto 15px auto;
+    overflow: hidden;
     padding: 10px;
     width: 90px;
+}
+
+.navRow:hover {
+    background-color: whitesmoke;
+    box-shadow: 0px 18px 25px -6px rgba(0,0,0,0.8);
+    text-decoration: none !important;
+}
+
+.navRow:active {
+    background-color: lightgrey;
+}
+
+.roomBtns {
+    display: flex;
+    flex: 3;
+    flex-direction: column;
+    height: 50px;
+    margin-left: 20px;
+    width: 5%;
+}
+
+.btn--roomMenu {
+    margin-bottom: 15px;
+}
+
+.header--roomName {
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.header--roomMenu {
+    font-size: 14px;
+    font-weight: bolder;
+    margin-bottom: 25px;
 }

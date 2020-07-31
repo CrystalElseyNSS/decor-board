@@ -5,6 +5,7 @@ import { Login } from '../auth/Login';
 import { Register } from '../auth/Register';
 import { RoomForm } from '../rooms/RoomForm';
 import { Room } from '../rooms/Room';
+import { EditRoomForm } from '../rooms/EditRoomForm'; 
 
 export const ApplicationViews = () => {
   const { isLoggedIn } = useContext(UserProfileContext)
@@ -28,6 +29,10 @@ export const ApplicationViews = () => {
 
           <Route path="/design">
             {isLoggedIn ? <RoomForm /> : <Redirect to="/login" />}
+          </Route>
+
+          <Route path="/room/editRoom/:id">
+            {isLoggedIn ? <EditRoomForm /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/room/room/:id" exact>

@@ -29,7 +29,7 @@ namespace DecorBoard.Controllers
             return Ok(room);
         }
 
-        [HttpGet()]
+        [HttpGet]
         public IActionResult GetRoomsByCurrentUser()
         {
             var currentUser = GetCurrentUserProfile();
@@ -38,10 +38,22 @@ namespace DecorBoard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(Room room)
+        public IActionResult Post(Room room)
         {
             _roomRepository.Add(room);
             return CreatedAtAction(nameof(GetRoomById), new { id = room.Id }, room);
+        }
+
+        [HttpPut("editRoom/{id}")]
+        public IActionResult Put(int id, Room room)
+        {
+            if (id != room.Id)
+            {
+                return BadRequest();
+            }
+
+            _roomRepository.Update(room);
+            return NoContent();
         }
 
         private UserProfile GetCurrentUserProfile()

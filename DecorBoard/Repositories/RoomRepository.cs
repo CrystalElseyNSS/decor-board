@@ -36,5 +36,11 @@ namespace DecorBoard.Repositories
             _context.Add(room);
             _context.SaveChanges();
         }
+
+        public void Update(Room room)
+        {
+            _context.Entry(room).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
     }
 }
