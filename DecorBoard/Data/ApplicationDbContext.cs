@@ -14,7 +14,5 @@ namespace DecorBoard.Data
         public DbSet<Room> Room { get; set; }
 
         public DbSet<Item> Item { get; set; }
-
-        public DbSet<RoomItem> RoomItem { get; set; }
     }
 }

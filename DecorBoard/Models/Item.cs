@@ -16,14 +16,19 @@ namespace DecorBoard.Models
         public Category Category { get; set; }
 
         [Required]
+        public int RoomId { get; set; }
+
+        public Room Room { get; set; }
+
+        [Required]
         [MaxLength(50)]
         public string ItemName { get; set; }
-        
+
         [Required]
         [MaxLength(25)]
         public string ImageLocation { get; set; }
 
         [Required]
-        public decimal ItemPrice { get; set; } 
+        public decimal ItemPrice { get; set; }
     }
 }

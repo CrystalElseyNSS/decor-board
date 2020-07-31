@@ -8,6 +8,7 @@ import { App } from './App';
 import { UserProfileProvider } from './providers/UserProfileProvider';
 import { RoomProvider } from './providers/RoomProvider';
 import { UploadImgProvider } from './providers/UploadImgProvider';
+import { ItemProvider } from './providers/ItemProvider';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -18,9 +19,11 @@ ReactDOM.render(
   <React.StrictMode>
     <UserProfileProvider>
       <RoomProvider>
-        <UploadImgProvider>
-          <App />
-        </UploadImgProvider>
+        <ItemProvider>
+          <UploadImgProvider>
+            <App />
+          </UploadImgProvider>
+        </ItemProvider>
       </RoomProvider>
     </UserProfileProvider>
   </React.StrictMode>,

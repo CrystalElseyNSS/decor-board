@@ -24,7 +24,7 @@ export const Room = () => {
             <div className="roomBtns">
                 <div className="header--roomName">{currentRoomView.roomName}</div>
                 <div className="header--roomMenu">Menu:</div>
-                <Button className="btn--roomMenu white">➕</Button>
+                <NavLink to={`/addItem`}><Button className="btn--roomMenu white">➕</Button></NavLink>
                 <NavLink to={`/room/editRoom/${currentRoomView.id}`}><Button className="btn--roomMenu white">📝</Button></NavLink>
                 <Button 
                     className="btn--roomMenu white"
