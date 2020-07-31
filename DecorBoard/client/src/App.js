@@ -13,7 +13,7 @@ export const App = () => {
   const { isLoggedIn } = useContext(UserProfileContext)
 
   return (
-    <div>
+    <div id="override">
       <Router>
         <Header />
           <main className="mainContainer">

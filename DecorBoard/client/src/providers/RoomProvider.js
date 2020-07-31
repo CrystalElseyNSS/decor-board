@@ -46,14 +46,26 @@ export const RoomProvider = ( props ) => {
                 },
                 body: JSON.stringify(room)
             })
-            .then(resp => room = resp.json())
-            // .then(() => room)
-          
+            .then(resp => room = resp.json())          
+        )
+    }
+
+    const updateRoom = (room) => {
+        return getToken().then((token) =>
+            fetch(apiUrl, {
+                method: "PUT",
+                headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+                },
+                body: JSON.stringify(room)
+            })
+            .then(resp => room = resp.json())          
         )
     }
 
     return (
-        <RoomContext.Provider value={{ rooms, getRooms, addRoom, currentRoomView, setCurrentRoomView, getRoomById }}>
+        <RoomContext.Provider value={{ rooms, getRooms, addRoom, updateRoom, currentRoomView, setCurrentRoomView, getRoomById }}>
             {props.children}
         </RoomContext.Provider>
     )

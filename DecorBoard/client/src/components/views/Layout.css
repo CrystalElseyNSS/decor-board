@@ -31,6 +31,9 @@
 }
 
 .viewContainer {
+    display: flex;
+    flex: 2;
+    margin-left: 50px;
     width: 85%;
 }
 
