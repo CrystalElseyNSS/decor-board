@@ -52,17 +52,17 @@ export const RoomProvider = ( props ) => {
 
     const updateRoom = (room) => {
         return getToken().then((token) =>
-            fetch(apiUrl, {
+            fetch(`${apiUrl}/editRoom/${room.id}`, {
                 method: "PUT",
                 headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
                 },
                 body: JSON.stringify(room)
-            })
-            .then(resp => room = resp.json())          
+            }) 
+            .then((room) => getRooms())     
         )
-    }
+    } 
 
     return (
         <RoomContext.Provider value={{ rooms, getRooms, addRoom, updateRoom, currentRoomView, setCurrentRoomView, getRoomById }}>

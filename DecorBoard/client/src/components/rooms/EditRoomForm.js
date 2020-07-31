@@ -1,35 +1,35 @@
-import React, { useRef, useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useRef, useContext, useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import { RoomContext } from '../../providers/RoomProvider';
 import { UploadImgContext } from '../../providers/UploadImgProvider';
-import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Card, CardBody, CardHeader } from 'reactstrap';
 import "./Room.css";
 
 export const EditRoomForm = () => {
-    const { updateRoom, getRooms } = useContext(RoomContext)
+    const { currentRoomView, updateRoom, getRooms, getRoomById } = useContext(RoomContext)
     const { addImg } = useContext(UploadImgContext)
     const history = useHistory()
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"))
     const roomName = useRef();
     const imageLocation = useRef();
     const [selectedFile, setSelectedFile] = useState(null)
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
+    
+    const { id } = useParams()
+    useEffect(() => {
+        getRoomById(id)
+    }, [])
 
     const editRoom = (e) => {
         e.preventDefault()
-        const selectedRoom = {
-            userProfileId: userProfile.id,
+        updateRoom({
+            id: currentRoomView.id,
+            userProfileId: currentUser.id,
             roomName: roomName.current.value,
             imageLocation: selectedFile.name
-        }
-        let newId;
-        updateRoom(selectedRoom)
-            .then((editedRoom) => {
-                newId = editedRoom.id
-                addImg(selectedFile)
-                return editedRoom
-            })
-        .then((room) => getRooms())
-        .then(() => history.push(`/room/room/${newId}`))
+        })
+        addImg(selectedFile)
+        .then(() => history.push(`/room/room/${id}`))
     }
 
     const onFileChange = (e) => {
@@ -40,20 +40,19 @@ export const EditRoomForm = () => {
         <>
             <section className="editRoomForm">
                 <Card>
+                    <CardHeader>Edit {currentRoomView.roomName} Board:</CardHeader>
                     <CardBody>
                         <Form onSubmit={editRoom}>
                             <FormGroup>
                                 <Input
                                     autoFocus
-                                    required
                                     type="text"
-                                    placeholder="Enter the Name of the Room"
+                                    placeholder="New Room Name"
                                     innerRef={roomName}
                                 />
                             </FormGroup>
                             <FormGroup>
                                 <Input
-                                    required
                                     type="file"
                                     placeholder="Upload an image"
                                     innerRef={imageLocation}

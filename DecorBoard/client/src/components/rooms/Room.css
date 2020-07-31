@@ -2,6 +2,12 @@
 
 .roomForm {
     justify-content: center;
+    width: 80%;
+}
+
+.editRoomForm {
+    justify-content: center;
+    width: 80%;
 }
 
 .roomContainer {
@@ -50,8 +56,8 @@ a:hover {
     flex: 3;
     flex-direction: column;
     height: 50px;
-    margin-left: 10px;
-    width: 50px;
+    margin-left: 20px;
+    width: 5%;
 }
 
 .btn--roomMenu {

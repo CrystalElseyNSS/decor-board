@@ -28,7 +28,6 @@ export const RoomForm = () => {
                 addImg(selectedFile)
                 return addedRoom
             })
-        // .then(setCurrentRoomView(newRoom))
         .then((room) => getRooms())
         .then(() => history.push(`/room/room/${newId}`))
     }

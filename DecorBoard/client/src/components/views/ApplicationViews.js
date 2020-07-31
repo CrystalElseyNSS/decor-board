@@ -31,7 +31,7 @@ export const ApplicationViews = () => {
             {isLoggedIn ? <RoomForm /> : <Redirect to="/login" />}
           </Route>
 
-          <Route path="/editRoom">
+          <Route path="/room/editRoom/:id">
             {isLoggedIn ? <EditRoomForm /> : <Redirect to="/login" />}
           </Route>
 

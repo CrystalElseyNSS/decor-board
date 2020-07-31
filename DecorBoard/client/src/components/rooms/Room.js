@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
-import { Button, NavLink } from 'reactstrap';
-import { useParams } from 'react-router-dom'
+import { Button } from 'reactstrap';
+import { useParams, NavLink } from 'react-router-dom'
 import { RoomContext } from '../../providers/RoomProvider';
 import "./Room.css";
 
 export const Room = () => {
 
     // Gets room id from route parameter and sets application view to the clicked room:
-    const { currentRoomView, getRoomById } = useContext(RoomContext)
+    const { currentRoomView, getRoomById, deleteRoom } = useContext(RoomContext)
     const { id } = useParams()
     useEffect(() => {
         getRoomById(id)
@@ -25,8 +25,15 @@ export const Room = () => {
                 <div className="header--roomName">{currentRoomView.roomName}</div>
                 <div className="header--roomMenu">Menu:</div>
                 <Button className="btn--roomMenu white">➕</Button>
-                <NavLink to="/editRoom"><Button className="btn--roomMenu white">📝</Button></NavLink>
-                <Button className="btn--roomMenu white">❌</Button>
+                <NavLink to={`/room/editRoom/${currentRoomView.id}`}><Button className="btn--roomMenu white">📝</Button></NavLink>
+                <Button 
+                    className="btn--roomMenu white"
+                    onClick={() =>
+                        window.confirm(
+                          "Are you sure you wish to delete this board?"
+                        ) && deleteRoom(currentRoomView.id)
+                      }>❌
+                </Button>
             </div>
 
 
