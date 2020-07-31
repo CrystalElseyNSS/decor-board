@@ -42,5 +42,12 @@ namespace DecorBoard.Repositories
             _context.Entry(room).State = EntityState.Modified;
             _context.SaveChanges();
         }
+
+        public void Delete(int id)
+        {
+            var room = GetById(id);
+            _context.Room.Remove(room);
+            _context.SaveChanges();
+        }
     }
 }
