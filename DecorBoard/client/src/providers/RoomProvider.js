@@ -64,8 +64,21 @@ export const RoomProvider = ( props ) => {
         )
     } 
 
+    const deleteRoom = (id) => {
+        getToken().then((token) =>
+            fetch(apiUrl + `/${id}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+            })
+            .then(() => getRooms()) 
+        )
+    }
+
     return (
-        <RoomContext.Provider value={{ rooms, getRooms, addRoom, updateRoom, currentRoomView, setCurrentRoomView, getRoomById }}>
+        <RoomContext.Provider value={{ rooms, getRooms, addRoom, updateRoom, deleteRoom, currentRoomView, setCurrentRoomView, getRoomById }}>
             {props.children}
         </RoomContext.Provider>
     )
