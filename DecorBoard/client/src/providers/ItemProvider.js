@@ -1,68 +1,67 @@
 import React, { useState, createContext, useContext } from "react";
 import { UserProfileContext } from "./UserProfileProvider";
 
-export const RoomContext = createContext();
+export const ItemContext = createContext();
 
-export const RoomProvider = ( props ) => {
-    const apiUrl = "/api/room";
+export const ItemProvider = ( props ) => {
+    const apiUrl = "/api/item";
     const { getToken } = useContext(UserProfileContext)
-    const [rooms, setRooms] = useState([])
-    const [currentRoomView, setCurrentRoomView] = useState({})
+    const [items, setItems] = useState([])
+    const [currentItemView, setCurrentItemView] = useState({})
     
-    const getRooms = () => {
+    const getItemsByRoom = (roomId) => {
+        return getToken().then((token) =>
+        fetch(`${apiUrl}/${roomId}`, {
+            method: "GET",
+            headers: {
+            Authorization: `Bearer ${token}`
+            }
+        }) 
+        .then(resp => resp.json())
+        .then(setItems))
+    }
+
+    const getItemById = (id) => {
+        return getToken().then((token) =>
+        fetch(`${apiUrl}/item/${id}`, {
+            method: "GET",
+            headers: {
+            Authorization: `Bearer ${token}`
+            }
+        }) 
+        .then(resp => resp.json())
+        )
+    }
+    
+    const addItem = (item) => {
         return getToken().then((token) =>
         fetch(apiUrl, {
-            method: "GET",
+            method: "POST",
             headers: {
-            Authorization: `Bearer ${token}`
-            }
-        }) 
-        .then(resp => resp.json())
-        .then(setRooms))
-    }
-
-    const getRoomById = (id) => {
-        return getToken().then((token) =>
-        fetch(`${apiUrl}/room/${id}`, {
-            method: "GET",
-            headers: {
-            Authorization: `Bearer ${token}`
-            }
-        }) 
-        .then(resp => resp.json())
-        .then((resp) => setCurrentRoomView(resp))
-        )
-    }
-
-    const addRoom = (room) => {
-        return getToken().then((token) =>
-            fetch(apiUrl, {
-                method: "POST",
-                headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
-                },
-                body: JSON.stringify(room)
-            })
-            .then(resp => room = resp.json())          
+            },
+            body: JSON.stringify(item)
+        })
+        .then((item) => getItemsByRoom())         
         )
     }
 
-    const updateRoom = (room) => {
+    const updateItem = (item) => {
         return getToken().then((token) =>
-            fetch(`${apiUrl}/editRoom/${room.id}`, {
+            fetch(`${apiUrl}/editItem/${item.id}`, {
                 method: "PUT",
                 headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
                 },
-                body: JSON.stringify(room)
+                body: JSON.stringify(item)
             }) 
-            .then((room) => getRooms())     
+            .then((item) => getItemsByRoom())     
         )
     } 
 
-    const deleteRoom = (id) => {
+    const deleteItem = (id) => {
         getToken().then((token) =>
             fetch(apiUrl + `/${id}`, {
                 method: "DELETE",
@@ -71,13 +70,13 @@ export const RoomProvider = ( props ) => {
                     "Content-Type": "application/json"
                 },
             })
-            .then(() => getRooms()) 
+            .then(() => getItemsByRoom()) 
         )
     }
 
     return (
-        <RoomContext.Provider value={{ rooms, getRooms, addRoom, updateRoom, deleteRoom, currentRoomView, setCurrentRoomView, getRoomById }}>
+        <ItemContext.Provider value={{ items, getItemsByRoom, addItem, updateItem, deleteItem, currentItemView, setCurrentItemView, getItemById }}>
             {props.children}
-        </RoomContext.Provider>
+        </ItemContext.Provider>
     )
 }

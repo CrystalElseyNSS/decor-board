@@ -6,10 +6,9 @@ import { Button, Form, FormGroup, Input, Card, CardBody, CardHeader } from 'reac
 import "./Room.css";
 
 export const EditRoomForm = () => {
-    const { currentRoomView, updateRoom, getRooms, getRoomById } = useContext(RoomContext)
+    const { currentRoomView, updateRoom, getRoomById } = useContext(RoomContext)
     const { addImg } = useContext(UploadImgContext)
     const history = useHistory()
-    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"))
     const roomName = useRef();
     const imageLocation = useRef();
     const [selectedFile, setSelectedFile] = useState(null)
@@ -18,6 +17,7 @@ export const EditRoomForm = () => {
     const { id } = useParams()
     useEffect(() => {
         getRoomById(id)
+        // eslint-disable-next-line   
     }, [])
 
     const editRoom = (e) => {

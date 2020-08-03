@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useRef } from 'react';
-import { Row, Button } from 'reactstrap';
+import React, { useContext } from 'react';
+import { Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { RoomContext } from '../../providers/RoomProvider';
 import "../views/Layout.css";
