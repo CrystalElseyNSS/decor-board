@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { UserProfileContext } from '../../providers/UserProfileProvider';
 import { Login } from '../auth/Login';
 import { Register } from '../auth/Register';
-import { RoomForm } from '../rooms/RoomForm';
+import { AddRoomForm } from '../rooms/AddRoomForm';
 import { Room } from '../rooms/Room';
 import { EditRoomForm } from '../rooms/EditRoomForm'; 
 import { AddItemForm } from '../items/AddItemForm';
@@ -29,7 +29,7 @@ export const ApplicationViews = () => {
           </Route>
 
           <Route path="/design">
-            {isLoggedIn ? <RoomForm /> : <Redirect to="/login" />}
+            {isLoggedIn ? <AddRoomForm /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/room/editRoom/:id">
@@ -40,7 +40,7 @@ export const ApplicationViews = () => {
             {isLoggedIn ? <Room /> : <Redirect to="/login" />}
           </Route>
 
-          <Route path="/addItem">
+          <Route path="/addItem/:id">
             {isLoggedIn ? <AddItemForm /> : <Redirect to="/login" />}
           </Route>
 

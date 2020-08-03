@@ -5,8 +5,8 @@ import { UploadImgContext } from '../../providers/UploadImgProvider';
 import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
 import "./Room.css";
 
-export const RoomForm = () => {
-    const { addRoom, getRoomById, setCurrentRoomView, getRooms } = useContext(RoomContext)
+export const AddRoomForm = () => {
+    const { addRoom, getRooms } = useContext(RoomContext)
     const { addImg } = useContext(UploadImgContext)
     const history = useHistory()
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"))
@@ -38,7 +38,7 @@ export const RoomForm = () => {
 
     return (
         <>
-            <section className="roomForm">
+            <section className="addRoomForm">
                 <Card>
                     <CardBody>
                         <Form onSubmit={addNewUserRoom}>

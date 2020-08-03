@@ -29,10 +29,10 @@ namespace DecorBoard.Controllers
             return Ok(item);
         }
 
-        [HttpGet]
-        public IActionResult GetAllRoomItems(int roomId)
+        [HttpGet("{id}")]
+        public IActionResult GetAllRoomItems(int id)
         {
-            var items = _itemRepository.GetItemsByRoomId(roomId);
+            var items = _itemRepository.GetItemsByRoomId(id);
             return Ok(items);
         }
 
@@ -43,7 +43,7 @@ namespace DecorBoard.Controllers
             return CreatedAtAction(nameof(GetItemById), new { id = item.Id }, item);
         }
 
-        [HttpPut("addItem/{id}")]
+        [HttpPut("editItem/{id}")]
         public IActionResult Put(int id, Item item)
         {
             if (id != item.Id)

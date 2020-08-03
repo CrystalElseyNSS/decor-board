@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Col, Row } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import { RoomContext } from '../../providers/RoomProvider';
@@ -10,7 +10,7 @@ export const NavBar = () => {
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
 
     useEffect(() => {        
-        getRooms(currentUser.id)      
+        getRooms(currentUser.id)    
         // eslint-disable-next-line       
     }, []);
 

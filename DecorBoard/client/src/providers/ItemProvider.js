@@ -1,6 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
 import { UserProfileContext } from "./UserProfileProvider";
-import { useHistory } from "react-router-dom";
 
 export const ItemContext = createContext();
 
@@ -9,11 +8,10 @@ export const ItemProvider = ( props ) => {
     const { getToken } = useContext(UserProfileContext)
     const [items, setItems] = useState([])
     const [currentItemView, setCurrentItemView] = useState({})
-    const history = useHistory();
     
-    const getItems = () => {
+    const getItemsByRoom = (roomId) => {
         return getToken().then((token) =>
-        fetch(apiUrl, {
+        fetch(`${apiUrl}/${roomId}`, {
             method: "GET",
             headers: {
             Authorization: `Bearer ${token}`
@@ -32,21 +30,20 @@ export const ItemProvider = ( props ) => {
             }
         }) 
         .then(resp => resp.json())
-        .then((resp) => setCurrentItemView(resp))
         )
     }
-
+    
     const addItem = (item) => {
         return getToken().then((token) =>
-            fetch(apiUrl, {
-                method: "POST",
-                headers: {
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
-                },
-                body: JSON.stringify(item)
-            })
-            .then(resp => item = resp.json())          
+            },
+            body: JSON.stringify(item)
+        })
+        .then((item) => getItemsByRoom())         
         )
     }
 
@@ -60,7 +57,7 @@ export const ItemProvider = ( props ) => {
                 },
                 body: JSON.stringify(item)
             }) 
-            .then((item) => getItems())     
+            .then((item) => getItemsByRoom())     
         )
     } 
 
@@ -73,12 +70,12 @@ export const ItemProvider = ( props ) => {
                     "Content-Type": "application/json"
                 },
             })
-            .then(() => getItems()) 
+            .then(() => getItemsByRoom()) 
         )
     }
 
     return (
-        <ItemContext.Provider value={{ items, getItems, addItem, updateItem, deleteItem, currentItemView, setCurrentItemView, getItemById }}>
+        <ItemContext.Provider value={{ items, getItemsByRoom, addItem, updateItem, deleteItem, currentItemView, setCurrentItemView, getItemById }}>
             {props.children}
         </ItemContext.Provider>
     )

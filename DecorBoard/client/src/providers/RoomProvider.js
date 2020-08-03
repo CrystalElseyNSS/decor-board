@@ -1,6 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
 import { UserProfileContext } from "./UserProfileProvider";
-import { useHistory } from "react-router-dom";
 
 export const RoomContext = createContext();
 
@@ -9,7 +8,6 @@ export const RoomProvider = ( props ) => {
     const { getToken } = useContext(UserProfileContext)
     const [rooms, setRooms] = useState([])
     const [currentRoomView, setCurrentRoomView] = useState({})
-    const history = useHistory();
     
     const getRooms = () => {
         return getToken().then((token) =>

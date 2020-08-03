@@ -1,36 +1,47 @@
-import React, { useRef, useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useRef, useContext, useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import { ItemContext } from '../../providers/ItemProvider';
 import { UploadImgContext } from '../../providers/UploadImgProvider';
+import { CategoryContext } from '../../providers/CategoryProvider';
+import { RoomContext } from '../../providers/RoomProvider';
 import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
 import "./Item.css";
 
 export const AddItemForm = () => {
-    const { addItem, getItems } = useContext(ItemContext)
+    const { addItem, getItemsByRoom } = useContext(ItemContext)
     const { addImg } = useContext(UploadImgContext)
+    const { getRoomById } = useContext(RoomContext)
+    const { categories, getCategories } = useContext(CategoryContext)
     const history = useHistory()
-    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"))
     const itemName = useRef()
+    const itemUrl = useRef()
     const imageLocation = useRef()
     const itemPrice = useRef()
+    const category = useRef()
     const [selectedFile, setSelectedFile] = useState(null)
+    const [roomId, setRoomId] = useState(0)
 
-    const addNewUserItem = (e) => {
+    const { id } = useParams()
+    useEffect(() => {
+        getRoomById(id)
+        setRoomId(id)
+        getCategories()
+        getItemsByRoom(id)
+        // eslint-disable-next-line   
+    }, [])
+
+    const addNewItem = (e) => {
         e.preventDefault()
         const newItem = {
-            userProfileId: userProfile.id,
+            roomId: roomId,
+            categoryId: parseInt(category.current.value),
             itemName: itemName.current.value,
-            imageLocation: selectedFile.name
+            imageLocation: selectedFile.name,
+            itemPrice: itemPrice.current.value
         }
-        let newId;
         addItem(newItem)
-            .then((addedItem) => {
-                newId = addedItem.id
-                addImg(selectedFile)
-                return addedItem
-            })
-        .then((item) => getItems())
-        .then(() => history.push(`/item/item/${newId}`))
+        .then(addImg(selectedFile))
+        .then(() => history.push(`/room/room/${roomId}`))
     }
 
     const onFileChange = (e) => {
@@ -42,7 +53,7 @@ export const AddItemForm = () => {
             <section className="itemForm">
                 <Card>
                     <CardBody>
-                        <Form onSubmit={addNewUserItem}>
+                        <Form onSubmit={addNewItem}>
                             <FormGroup>
                                 <Input
                                     autoFocus
@@ -69,6 +80,54 @@ export const AddItemForm = () => {
                                     innerRef={itemPrice}
                                 />
                             </FormGroup>
+                            <FormGroup>
+                                <Input
+                                    required
+                                    type="text"
+                                    placeholder="Purchase Link"
+                                    innerRef={itemUrl}
+                                />
+                            </FormGroup>
+
+
+
+
+
+
+                            <FormGroup className="form--field">
+                                <select
+                                    required
+                                    defaultValue=""
+                                    ref={category}
+                                >
+                                    <option>Select a Category</option>
+                                    {categories.map(c => (
+                                        <option key={c.id} value={c.id}>{c.categoryName}</option>
+                                    ))}
+                                </select>
+                            </FormGroup>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <Button>Submit</Button>
                         </Form>
                     </CardBody>

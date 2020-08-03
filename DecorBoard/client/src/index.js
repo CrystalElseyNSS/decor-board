@@ -8,6 +8,7 @@ import { App } from './App';
 import { UserProfileProvider } from './providers/UserProfileProvider';
 import { RoomProvider } from './providers/RoomProvider';
 import { UploadImgProvider } from './providers/UploadImgProvider';
+import { CategoryProvider } from './providers/CategoryProvider';
 import { ItemProvider } from './providers/ItemProvider';
 
 const firebaseConfig = {
@@ -19,11 +20,13 @@ ReactDOM.render(
   <React.StrictMode>
     <UserProfileProvider>
       <RoomProvider>
-        <ItemProvider>
-          <UploadImgProvider>
-            <App />
-          </UploadImgProvider>
-        </ItemProvider>
+        <CategoryProvider>
+          <ItemProvider>
+            <UploadImgProvider>
+              <App />
+            </UploadImgProvider>
+          </ItemProvider>
+        </CategoryProvider>
       </RoomProvider>
     </UserProfileProvider>
   </React.StrictMode>,
