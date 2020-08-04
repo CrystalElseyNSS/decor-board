@@ -8,8 +8,6 @@ using System.Security.Claims;
 
 namespace DecorBoard.Controllers
 {
-
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ItemController : ControllerBase
@@ -34,6 +32,17 @@ namespace DecorBoard.Controllers
         {
             var items = _itemRepository.GetItemsByRoomId(id);
             return Ok(items);
+        }
+
+        [HttpGet("budget/{id}")]
+        public IActionResult GetRoomBudget(int id)
+        {
+            var priceTotal = _itemRepository.GetSumOfItems(id);
+            var roomTotal = new RoomTotalViewModel()
+            {
+                SumOfRoomItems = priceTotal
+            };
+            return Ok(roomTotal);
         }
 
         [HttpPost]
