@@ -1,13 +1,10 @@
 import React, { useState, createContext, useContext } from "react";
-import { useParams } from 'react-router-dom';
 import { UserProfileContext } from './UserProfileProvider';
-import { RoomContext } from '../providers/RoomProvider';
 export const ItemContext = createContext();
 
 export const ItemProvider = (props) => {
     const apiUrl = "/api/item";
     const { getToken } = useContext(UserProfileContext)
-    const { currentRoomView } = useContext(RoomContext)
     const [items, setItems] = useState([])
     const [itemTotal, setItemTotal] = useState(0)
 
@@ -58,7 +55,7 @@ export const ItemProvider = (props) => {
                 },
                 body: JSON.stringify(item)
             })
-                .then((item) => getItemsByRoom())
+                .then((item) => getItemsByRoom(item.roomId))
         )
     }
 
@@ -85,7 +82,6 @@ export const ItemProvider = (props) => {
                     "Content-Type": "application/json"
                 },
             })
-                .then(() => getItemsByRoom(currentRoomView.id))
         )
     }
 

@@ -8,6 +8,9 @@ import { Room } from '../rooms/Room';
 import { EditRoomForm } from '../rooms/EditRoomForm'; 
 import { AddItemForm } from '../items/AddItemForm';
 import { EditItemForm } from '../items/EditItemForm';
+import { StockRoom } from '../rooms/StockRoom';
+import { StockItemForm } from '../items/StockItemForm';
+import '../views/Layout.css'
 
 export const ApplicationViews = () => {
   const { isLoggedIn } = useContext(UserProfileContext)
@@ -18,7 +21,7 @@ export const ApplicationViews = () => {
         <Switch>
 
           <Route path="/" exact>
-            {isLoggedIn ? <p>Welcome!</p> : <Redirect to="/login" />}
+            {isLoggedIn ? <p className="welcome">Welcome!</p> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/login">
@@ -45,12 +48,16 @@ export const ApplicationViews = () => {
             {isLoggedIn ? <AddItemForm /> : <Redirect to="/login" />}
           </Route>
 
+          <Route path="/stockRoom/addItem">
+            {isLoggedIn ? <StockItemForm /> : <Redirect to="/login" />}
+          </Route>
+
           <Route path="/room/editItem/:id">
             {isLoggedIn ? <EditItemForm /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/stockRoom">
-            {isLoggedIn ? <Room /> : <Redirect to="/login" />}
+            {isLoggedIn ? <StockRoom /> : <Redirect to="/login" />}
           </Route>
 
         </Switch>

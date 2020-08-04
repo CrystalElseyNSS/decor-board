@@ -19,9 +19,10 @@ export const Room = () => {
         // eslint-disable-next-line   
     }, [])
 
-    console.log(itemTotal)
+
     useEffect(() => {
         getItemsByRoom(currentRoomView.id)
+        getItemTotal(currentRoomView.id)
         // eslint-disable-next-line   
     }, [currentRoomView])
 

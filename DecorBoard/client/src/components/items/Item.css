@@ -9,9 +9,9 @@
     background-repeat: no-repeat;
     background-size: contain;
     border: 2px inset rgb(189, 186, 186);
-    height: 90px;
+    height: 150px;
     padding: 10px;
-    width: 90px;
+    width: 150px;
   }
   
   .itemImage:hover {
@@ -21,7 +21,7 @@
 .hide {
     display: none;
     margin-top: 5px;
-    width: 90px;
+    width: 150px;
 }
 
 .itemImage:hover + .hide {
