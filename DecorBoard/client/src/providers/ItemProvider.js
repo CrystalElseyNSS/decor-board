@@ -1,20 +1,21 @@
 import React, { useState, createContext, useContext } from "react";
-import { UserProfileContext } from "./UserProfileProvider";
-
+import { useParams } from 'react-router-dom';
+import { UserProfileContext } from './UserProfileProvider';
+import { RoomContext } from '../providers/RoomProvider';
 export const ItemContext = createContext();
 
 export const ItemProvider = ( props ) => {
     const apiUrl = "/api/item";
     const { getToken } = useContext(UserProfileContext)
+    const { currentRoomView } = useContext(RoomContext)
     const [items, setItems] = useState([])
-    const [currentItemView, setCurrentItemView] = useState({})
     
-    const getItemsByRoom = (roomId) => {
+    const getItemsByRoom = (roomId) => { 
         return getToken().then((token) =>
         fetch(`${apiUrl}/${roomId}`, {
             method: "GET",
             headers: {
-            Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`
             }
         }) 
         .then(resp => resp.json())
@@ -70,12 +71,12 @@ export const ItemProvider = ( props ) => {
                     "Content-Type": "application/json"
                 },
             })
-            .then(() => getItemsByRoom()) 
+            .then(() => getItemsByRoom(currentRoomView.id)) 
         )
     }
 
     return (
-        <ItemContext.Provider value={{ items, getItemsByRoom, addItem, updateItem, deleteItem, currentItemView, setCurrentItemView, getItemById }}>
+        <ItemContext.Provider value={{ items, getItemsByRoom, addItem, updateItem, deleteItem, getItemById }}>
             {props.children}
         </ItemContext.Provider>
     )

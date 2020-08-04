@@ -22,7 +22,7 @@ export const Room = () => {
         getItemsByRoom(currentRoomView.id)
         // eslint-disable-next-line   
     }, [currentRoomView])
-
+    
     // Renders JSX code for room model: 
     return (
         <>
