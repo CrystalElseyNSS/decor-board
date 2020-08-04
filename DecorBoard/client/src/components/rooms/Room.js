@@ -10,18 +10,22 @@ export const Room = () => {
 
     // Gets room id from route parameter and sets application view to the clicked room:
     const { currentRoomView, getRoomById, deleteRoom } = useContext(RoomContext)
-    const { items, getItemsByRoom } = useContext(ItemContext)
+    const { items, getItemsByRoom, itemTotal, getItemTotal } = useContext(ItemContext)
     const { id } = useParams()
 
     useEffect(() => {
         getRoomById(id)
+        getItemTotal(id)
         // eslint-disable-next-line   
     }, [])
 
+    console.log(itemTotal)
     useEffect(() => {
         getItemsByRoom(currentRoomView.id)
         // eslint-disable-next-line   
     }, [currentRoomView])
+
+    
     
     // Renders JSX code for room model: 
     return (
@@ -58,20 +62,11 @@ export const Room = () => {
                         ) && deleteRoom(currentRoomView.id)
                       }><span role="img" aria-label="delete">❌</span>
                 </Button>
-                <div>Total Price:</div>
+                <div className="roomBudget">
+                    <div>Total Price:</div>
+                    <div className="roomTotal">${itemTotal.sumOfRoomItems}</div>
+                </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
         </>
     )
 }

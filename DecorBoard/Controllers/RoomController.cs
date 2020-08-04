@@ -8,8 +8,6 @@ using System.Security.Claims;
 
 namespace DecorBoard.Controllers
 {
-
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RoomController : ControllerBase

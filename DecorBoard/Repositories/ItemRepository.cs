@@ -27,8 +27,15 @@ namespace DecorBoard.Repositories
         {
             return _context.Item
                 .Include(r => r.Room)
-                .Where(r => r.RoomId == roomId)
+                .Where(i => i.RoomId == roomId)
                 .ToList();
+        }
+
+        public decimal GetSumOfItems(int roomId)
+        {
+            return _context.Item
+                .Where(i => i.RoomId == roomId)
+                .Sum(i => i.ItemPrice);
         }
 
         public void Add(Item item)

@@ -55,3 +55,14 @@
     flex-direction: row;
 }
   
+.roomBudget {
+    font-size: 14px;
+    font-weight: bolder;
+    margin-top: 20px;
+}
+
+.roomTotal {
+    color: rgb(54, 146, 54);
+    font-size: 18px;
+    margin-top: 5px;
+}
