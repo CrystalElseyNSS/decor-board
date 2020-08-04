@@ -30,5 +30,8 @@ namespace DecorBoard.Models
 
         [Required]
         public decimal ItemPrice { get; set; }
+
+        [Required]
+        public string ItemUrl { get; set; }
     }
 }
