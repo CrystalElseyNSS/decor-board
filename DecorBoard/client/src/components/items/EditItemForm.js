@@ -7,10 +7,10 @@ import { RoomContext } from '../../providers/RoomProvider';
 import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
 import "./Item.css";
 
-export const AddItemForm = () => {
-    const { addItem, getItemsByRoom } = useContext(ItemContext)
+export const EditItemForm = () => {
+    const { updateItem, getItemsByRoom } = useContext(ItemContext)
     const { addImg } = useContext(UploadImgContext)
-    const { getRoomById } = useContext(RoomContext)
+    const { currentRoomView, getRoomById } = useContext(RoomContext)
     const { categories, getCategories } = useContext(CategoryContext)
     const history = useHistory()
     const itemName = useRef()
@@ -23,24 +23,24 @@ export const AddItemForm = () => {
 
     const { id } = useParams()
     useEffect(() => {
-        getRoomById(id)
-        setRoomId(id)
+        getRoomById(currentRoomView.id)
+        setRoomId(currentRoomView.id)
         getCategories()
-        getItemsByRoom(id)
+        getItemsByRoom(currentRoomView.id)
         // eslint-disable-next-line   
     }, [])
 
-    const addNewItem = (e) => {
+    const editItem = (e) => {
         e.preventDefault()
-        const newItem = {
+        updateItem({
+            id: id,
             roomId: roomId,
             categoryId: parseInt(category.current.value),
             itemName: itemName.current.value,
             imageLocation: selectedFile.name,
             itemPrice: itemPrice.current.value,
             itemUrl: itemUrl.current.value
-        }
-        addItem(newItem)
+        })
         .then(addImg(selectedFile))
         .then(() => history.push(`/room/room/${roomId}`))
     }
@@ -54,7 +54,7 @@ export const AddItemForm = () => {
             <section className="itemForm">
                 <Card>
                     <CardBody>
-                        <Form onSubmit={addNewItem}>
+                        <Form onSubmit={editItem}>
                             <FormGroup>
                                 <Input
                                     autoFocus
