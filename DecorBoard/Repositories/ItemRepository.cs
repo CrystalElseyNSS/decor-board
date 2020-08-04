@@ -26,7 +26,7 @@ namespace DecorBoard.Repositories
         public List<Item> GetItemsByRoomId(int roomId)
         {
             return _context.Item
-                .Include(r => r.Room)
+                //.Include(r => r.Room)
                 .Where(i => i.RoomId == roomId)
                 .ToList();
         }
