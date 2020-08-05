@@ -1,8 +1,7 @@
 .headerContainer {
     display: block;
-    justify-content: center;
     margin: auto;
-    width: 75%;
+    width: 90%;
 }
 
 .logo {
@@ -10,9 +9,8 @@
     background-repeat: no-repeat;
     background-size: contain;
     height: 350px;
-    justify-content: center;
     margin: auto;
-    width: 100%;
+    width: 90%;
 }
 
 .mainContainer {
@@ -33,11 +31,22 @@
 .viewContainer {
     display: flex;
     flex: 2;
+    margin-bottom: 50px;
     margin-left: 10px;
-    width: 70%;
+    width: 65%;
 }
 
 .navColumn {
     justify-content: center;
     padding: 0px
+}
+
+.loginDiv {
+    width: 75%;
+    margin: auto;
+}
+
+.designDiv {
+    width: 95%;
+    margin: 0px auto;
 }

@@ -40,9 +40,9 @@ export const ItemProvider = (props) => {
                     Authorization: `Bearer ${token}`
                 }
             })
-            .then(resp => resp.json())
-            .then((resp) => setItemTotal(resp))
-            )
+                .then(resp => resp.json())
+                .then((resp) => setItemTotal(resp))
+        )
     }
 
     const addItem = (item) => {
@@ -69,7 +69,7 @@ export const ItemProvider = (props) => {
                 },
                 body: JSON.stringify(item)
             })
-                .then((item) => getItemsByRoom())
+                .then(() => getItemsByRoom(item.roomId))
         )
     }
 

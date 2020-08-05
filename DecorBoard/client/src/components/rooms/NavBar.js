@@ -9,11 +9,10 @@ export const NavBar = () => {
     const { rooms, getRooms } = useContext(RoomContext)
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
 
-    useEffect(() => {        
-        getRooms(currentUser.id)    
+    useEffect(() => {
+        getRooms(currentUser.id)
         // eslint-disable-next-line       
-    }, []);
-
+    }, [])
 
     return (
         <>

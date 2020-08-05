@@ -8,7 +8,6 @@ import './Room.css';
 
 export const Room = () => {
 
-    // Gets room id from route parameter and sets application view to the clicked room:
     const { currentRoomView, getRoomById, deleteRoom } = useContext(RoomContext)
     const { items, getItemsByRoom, itemTotal, getItemTotal } = useContext(ItemContext)
     const { id } = useParams()
@@ -26,9 +25,6 @@ export const Room = () => {
         // eslint-disable-next-line   
     }, [currentRoomView])
 
-    
-    
-    // Renders JSX code for room model: 
     return (
         <>
             <section className="roomContainer" style={{ backgroundImage: `url(/uploads/` + currentRoomView.imageLocation + `)` }}>

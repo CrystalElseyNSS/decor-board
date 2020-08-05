@@ -16,10 +16,10 @@ export const App = () => {
     <div id="override">
       <Router>
         <Header />
-          <main className="mainContainer">
-            {isLoggedIn ? <NavBar /> : <div></div>}
-            <ApplicationViews />
-          </main>
+        <main className="mainContainer">
+          {isLoggedIn ? <NavBar /> : <div></div>}
+          <ApplicationViews />
+        </main>
       </Router>
     </div>
   )
