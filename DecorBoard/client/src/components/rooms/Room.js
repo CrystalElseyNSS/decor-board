@@ -6,7 +6,7 @@ import { ItemContext } from '../../providers/ItemProvider';
 import { Item } from '../items/Item';
 import './Room.css';
 
-export const Room = () => {
+export const Room = ({ item }) => {
 
     const { currentRoomView, getRoomById, deleteRoom } = useContext(RoomContext)
     const { items, getItemsByRoom, itemTotal, getItemTotal } = useContext(ItemContext)

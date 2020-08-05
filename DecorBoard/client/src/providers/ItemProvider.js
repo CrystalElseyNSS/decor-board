@@ -28,7 +28,7 @@ export const ItemProvider = (props) => {
                     Authorization: `Bearer ${token}`
                 }
             })
-                .then(resp => resp.json())
+            .then(resp => resp.json())
         )
     }
 

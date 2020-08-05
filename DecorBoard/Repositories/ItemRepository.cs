@@ -20,6 +20,8 @@ namespace DecorBoard.Repositories
         public Item GetById(int id)
         {
             return _context.Item
+                .Include(i => i.Room) 
+                .Include(i => i.Category)
                 .FirstOrDefault(i => i.Id == id);
         }
 

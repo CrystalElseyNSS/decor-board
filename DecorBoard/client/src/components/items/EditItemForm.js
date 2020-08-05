@@ -8,7 +8,7 @@ import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
 import "./Item.css";
 
 export const EditItemForm = () => {
-    const { updateItem, getItemsByRoom } = useContext(ItemContext)
+    const { updateItem, getItemsByRoom, getItemById } = useContext(ItemContext)
     const { addImg } = useContext(UploadImgContext)
     const { currentRoomView, getRoomById } = useContext(RoomContext)
     const { categories, getCategories } = useContext(CategoryContext)
@@ -21,8 +21,18 @@ export const EditItemForm = () => {
     const [selectedFile, setSelectedFile] = useState(null)
     const [roomId, setRoomId] = useState(0)
     const { id } = useParams()
-
+    const intId = parseInt(id)
+    const [item, setItem] = useState({})
+    
+    
+    
+    // const currentCategory = 
+    // console.log(categories)
+    // console.log(currentCategory)
+    
+    
     useEffect(() => {
+        
         if (currentRoomView.id !== 0) {
             getCategories()
             getRoomById(currentRoomView.id)
@@ -33,8 +43,12 @@ export const EditItemForm = () => {
             setRoomId(0)
             getItemsByRoom(0)
         }
+        getItemById(intId)
+        .then(setItem)
         // eslint-disable-next-line  
     }, [])
+
+   
 
     const editItem = (e) => {
         if (currentRoomView.id !== 0) {
@@ -67,8 +81,19 @@ export const EditItemForm = () => {
     }
 
     const onFileChange = (e) => {
+        if (selectedFile.name !== item.imageLocation) {
         setSelectedFile(e.target.files[0])
+        } else {
+            setSelectedFile(item.imageLocation)
+        }
     }
+
+    // if (!currentCategory) {
+    //     return null
+    // }
+
+
+
 
     return (
         <>
@@ -81,6 +106,7 @@ export const EditItemForm = () => {
                                     autoFocus
                                     required
                                     type="text"
+                                    defaultValue={item.itemName}
                                     placeholder="Enter Item Description"
                                     innerRef={itemName}
                                 />
@@ -89,7 +115,7 @@ export const EditItemForm = () => {
                                 <Input
                                     required
                                     type="file"
-                                    placeholder="Upload an image"
+                                    defaultValue={item.imageLocation}
                                     innerRef={imageLocation}
                                     onChange={onFileChange}
                                 />
@@ -98,6 +124,7 @@ export const EditItemForm = () => {
                                 <Input
                                     required
                                     type="text"
+                                    defaultValue={item.itemPrice}
                                     placeholder="Price"
                                     innerRef={itemPrice}
                                 />
@@ -106,6 +133,7 @@ export const EditItemForm = () => {
                                 <Input
                                     required
                                     type="text"
+                                    defaultValue={item.itemUrl}
                                     placeholder="Purchase Link"
                                     innerRef={itemUrl}
                                 />
@@ -113,7 +141,8 @@ export const EditItemForm = () => {
                             <FormGroup className="form--field">
                                 <select
                                     required
-                                    defaultValue=""
+                                 
+                                    defaultValue={categories.find(c => c.Id === item.categoryId).categoryName}
                                     ref={category}
                                 >
                                     <option>Select a Category</option>
