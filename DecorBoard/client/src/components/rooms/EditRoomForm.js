@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState, useEffect } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { RoomContext } from '../../providers/RoomProvider';
 import { UploadImgContext } from '../../providers/UploadImgProvider';
@@ -6,19 +6,14 @@ import { Button, Form, FormGroup, Input, Card, CardBody, CardHeader } from 'reac
 import "./Room.css";
 
 export const EditRoomForm = () => {
-    const { currentRoomView, updateRoom, getRoomById } = useContext(RoomContext)
+    const { currentRoomView, updateRoom } = useContext(RoomContext)
     const { addImg } = useContext(UploadImgContext)
     const history = useHistory()
     const roomName = useRef();
     const imageLocation = useRef();
     const [selectedFile, setSelectedFile] = useState(null)
-    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
-    
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))    
     const { id } = useParams()
-    useEffect(() => {
-        getRoomById(id)
-        // eslint-disable-next-line   
-    }, [])
 
     const editRoom = (e) => {
         e.preventDefault()

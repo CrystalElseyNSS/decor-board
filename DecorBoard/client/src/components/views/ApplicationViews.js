@@ -25,7 +25,9 @@ export const ApplicationViews = () => {
           </Route>
 
           <Route path="/login">
+            <div className="loginDiv">
             <Login />
+            </div>
           </Route>
 
           <Route path="/register">
@@ -33,7 +35,7 @@ export const ApplicationViews = () => {
           </Route>
 
           <Route path="/design">
-            {isLoggedIn ? <AddRoomForm /> : <Redirect to="/login" />}
+            {isLoggedIn ? <div className="designDiv"><AddRoomForm /></div> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/room/editRoom/:id">
@@ -52,7 +54,7 @@ export const ApplicationViews = () => {
             {isLoggedIn ? <StockItemForm /> : <Redirect to="/login" />}
           </Route>
 
-          <Route path="/room/editItem/:id">
+          <Route path="/editItem/:id">
             {isLoggedIn ? <EditItemForm /> : <Redirect to="/login" />}
           </Route>
 

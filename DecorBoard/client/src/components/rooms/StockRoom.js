@@ -2,18 +2,20 @@ import React, { useContext, useEffect } from 'react';
 import { Button } from 'reactstrap';
 import { NavLink } from 'react-router-dom'
 import { ItemContext } from '../../providers/ItemProvider';
+import { RoomContext } from '../../providers/RoomProvider';
 import { Item } from '../items/Item';
 import './Room.css';
 
 export const StockRoom = () => {
     const { items, getItemsByRoom } = useContext(ItemContext)
-    
+    const { setCurrentRoomView } = useContext(RoomContext)
+
     useEffect(() => {
+        setCurrentRoomView({ id: 0 })
         getItemsByRoom(0)
         // eslint-disable-next-line   
     }, [])
 
-    // Renders JSX code for room model: 
     return (
         <>
             <section className="roomContainer">
@@ -34,7 +36,7 @@ export const StockRoom = () => {
                     <Button className="btn--roomMenu white">
                         <span role="img" aria-label="plus">➕</span>
                     </Button>
-                </NavLink> 
+                </NavLink>
             </div>
         </>
     )

@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
-
 .addRoomForm {
     justify-content: center;
-    width: 80%;
+    width: 85%;
 }
 
 .editRoomForm {
@@ -42,20 +41,18 @@ a:hover {
 }
 
 @keyframes bounce {
-	0%, 20%, 60%, 100% {
-		-webkit-transform: translateY(0);
-		transform: translateY(0);
-	}
-
-	40% {
-		-webkit-transform: translateY(-20px);
-		transform: translateY(-20px);
-	}
-
-	80% {
-		-webkit-transform: translateY(-10px);
-		transform: translateY(-10px);
-	}
+    0%, 20%, 60%, 100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    40% {
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+    80% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
 }
 
 .navRow:hover {
@@ -74,7 +71,8 @@ a:hover {
     flex: 3;
     flex-direction: column;
     height: 50px;
-    margin-left: 20px;
+    margin-left: 50px;
+    margin-right: 70px;
     width: 5%;
 }
 

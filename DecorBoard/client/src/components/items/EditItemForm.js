@@ -20,29 +20,50 @@ export const EditItemForm = () => {
     const category = useRef()
     const [selectedFile, setSelectedFile] = useState(null)
     const [roomId, setRoomId] = useState(0)
-
     const { id } = useParams()
+
     useEffect(() => {
-        getRoomById(currentRoomView.id)
-        setRoomId(currentRoomView.id)
-        getCategories()
-        getItemsByRoom(currentRoomView.id)
-        // eslint-disable-next-line   
+        if (currentRoomView.id !== 0) {
+            getCategories()
+            getRoomById(currentRoomView.id)
+            setRoomId(currentRoomView.id)
+            getItemsByRoom(currentRoomView.id)
+        } else {
+            getCategories()
+            setRoomId(0)
+            getItemsByRoom(0)
+        }
+        // eslint-disable-next-line  
     }, [])
 
     const editItem = (e) => {
-        e.preventDefault()
-        updateItem({
-            id: id,
-            roomId: roomId,
-            categoryId: parseInt(category.current.value),
-            itemName: itemName.current.value,
-            imageLocation: selectedFile.name,
-            itemPrice: itemPrice.current.value,
-            itemUrl: itemUrl.current.value
-        })
-        .then(addImg(selectedFile))
-        .then(() => history.push(`/room/room/${roomId}`))
+        if (currentRoomView.id !== 0) {
+            e.preventDefault()
+            updateItem({
+                id: id,
+                roomId: roomId,
+                categoryId: parseInt(category.current.value),
+                itemName: itemName.current.value,
+                imageLocation: selectedFile.name,
+                itemPrice: itemPrice.current.value,
+                itemUrl: itemUrl.current.value
+            })
+                .then(addImg(selectedFile))
+                .then(() => history.push(`/room/room/${roomId}`))
+        } else {
+            e.preventDefault()
+            updateItem({
+                id: id,
+                roomId: 0,
+                categoryId: parseInt(category.current.value),
+                itemName: itemName.current.value,
+                imageLocation: selectedFile.name,
+                itemPrice: itemPrice.current.value,
+                itemUrl: itemUrl.current.value
+            })
+                .then(addImg(selectedFile))
+                .then(() => history.push(`/stockRoom`))
+        }
     }
 
     const onFileChange = (e) => {

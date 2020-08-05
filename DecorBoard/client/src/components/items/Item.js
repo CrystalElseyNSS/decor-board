@@ -13,14 +13,15 @@ export const Item = ({ item }) => {
 
     const deleteRoomItem = (item) => {
         if (item.roomId === 0) {
-            deleteItem(item.id)
-                .then(() => history.push(`/stockRoom`))
+            deleteItem(item?.id)
+            getItemsByRoom(0)
         } else {
             deleteItem(item.id)
-                .then(() => getItemsByRoom(currentRoomView.id))
+            getItemsByRoom(currentRoomView.id)
+            history.push(`/room/room/${item.roomId}`)
         }
     }
-
+    
     return (
         <>
             <div className="itemDiv">
@@ -33,7 +34,7 @@ export const Item = ({ item }) => {
                     </div>
                 </a>
                 <div className="btns--itemEdit">
-                    <NavLink to={`/room/editItem/${item.id}`}>
+                    <NavLink to={`/editItem/${item.id}`}>
                         <Button size="sm" className="btn--itemMenu white">
                             <span role="img" aria-label="write" className="emoji">📝</span>
                         </Button>
