@@ -14,16 +14,21 @@ export const Room = () => {
 
     useEffect(() => {
         getRoomById(id)
-        getItemTotal(id)
+        .then(() => getItemTotal(id))
         // eslint-disable-next-line   
     }, [])
 
+    useEffect(() => {
+        getItemTotal(currentRoomView.id)
+    }, [items])
 
     useEffect(() => {
         getItemsByRoom(currentRoomView.id)
-        getItemTotal(currentRoomView.id)
+        .then(() => getItemTotal(currentRoomView.id))
         // eslint-disable-next-line   
     }, [currentRoomView])
+
+    console.log(currentRoomView.id)
 
     return (
         <>

@@ -4,14 +4,14 @@ import { ItemContext } from '../../providers/ItemProvider';
 import { UploadImgContext } from '../../providers/UploadImgProvider';
 import { CategoryContext } from '../../providers/CategoryProvider';
 import { RoomContext } from '../../providers/RoomProvider';
-import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Card, CardBody, Select } from 'reactstrap';
 import "./Item.css";
 
 export const EditItemForm = () => {
-    const { updateItem, getItemsByRoom } = useContext(ItemContext)
+    const { updateItem, getItemsByRoom, getItemById } = useContext(ItemContext)
     const { addImg } = useContext(UploadImgContext)
     const { currentRoomView, getRoomById } = useContext(RoomContext)
-    const { categories, getCategories } = useContext(CategoryContext)
+    const { categories, getCategories, getCategoryById } = useContext(CategoryContext)
     const history = useHistory()
     const itemName = useRef()
     const itemUrl = useRef()
@@ -21,6 +21,11 @@ export const EditItemForm = () => {
     const [selectedFile, setSelectedFile] = useState(null)
     const [roomId, setRoomId] = useState(0)
     const { id } = useParams()
+    const intId = parseInt(id)
+    const [item, setItem] = useState({})
+    const [currentCategory, setCategory] = useState(0)
+
+    console.log(currentRoomView.id)
 
     useEffect(() => {
         if (currentRoomView.id !== 0) {
@@ -33,8 +38,20 @@ export const EditItemForm = () => {
             setRoomId(0)
             getItemsByRoom(0)
         }
+        getItemById(intId)
+            .then(setItem)
         // eslint-disable-next-line  
     }, [])
+
+    useEffect(() => {
+        if (item.hasOwnProperty("itemName")) {
+            getCategoryById(item.categoryId)
+                .then((cat) => setCategory(cat.id))
+        }
+    }, [item])
+    
+    console.log(item)
+    console.log(currentCategory)
 
     const editItem = (e) => {
         if (currentRoomView.id !== 0) {
@@ -42,7 +59,7 @@ export const EditItemForm = () => {
             updateItem({
                 id: id,
                 roomId: roomId,
-                categoryId: parseInt(category.current.value),
+                categoryId: parseInt(currentCategory),
                 itemName: itemName.current.value,
                 imageLocation: selectedFile.name,
                 itemPrice: itemPrice.current.value,
@@ -55,21 +72,25 @@ export const EditItemForm = () => {
             updateItem({
                 id: id,
                 roomId: 0,
-                categoryId: parseInt(category.current.value),
+                categoryId: parseInt(currentCategory),
                 itemName: itemName.current.value,
                 imageLocation: selectedFile.name,
                 itemPrice: itemPrice.current.value,
                 itemUrl: itemUrl.current.value
             })
-                .then(addImg(selectedFile))
-                .then(() => history.push(`/stockRoom`))
+            .then(addImg(selectedFile))
+            .then(() => history.push(`/stockRoom`))
         }
     }
-
+    
     const onFileChange = (e) => {
         setSelectedFile(e.target.files[0])
     }
-
+    
+    const handleChange = (evt) => {
+        setCategory(evt.target.value)
+    }
+    
     return (
         <>
             <section className="itemForm">
@@ -81,6 +102,7 @@ export const EditItemForm = () => {
                                     autoFocus
                                     required
                                     type="text"
+                                    defaultValue={item.itemName}
                                     placeholder="Enter Item Description"
                                     innerRef={itemName}
                                 />
@@ -89,7 +111,7 @@ export const EditItemForm = () => {
                                 <Input
                                     required
                                     type="file"
-                                    placeholder="Upload an image"
+                                    defaultValue={item.imageLocation}
                                     innerRef={imageLocation}
                                     onChange={onFileChange}
                                 />
@@ -98,6 +120,7 @@ export const EditItemForm = () => {
                                 <Input
                                     required
                                     type="text"
+                                    defaultValue={item.itemPrice}
                                     placeholder="Price"
                                     innerRef={itemPrice}
                                 />
@@ -106,21 +129,24 @@ export const EditItemForm = () => {
                                 <Input
                                     required
                                     type="text"
+                                    defaultValue={item.itemUrl}
                                     placeholder="Purchase Link"
                                     innerRef={itemUrl}
                                 />
                             </FormGroup>
                             <FormGroup className="form--field">
-                                <select
+                                <Input
                                     required
-                                    defaultValue=""
+                                    type="select" 
+                                    value={currentCategory}
                                     ref={category}
+                                    onChange={handleChange}
                                 >
-                                    <option>Select a Category</option>
+                                    <option key="0" value="0">Select a Category</option>
                                     {categories.map(c => (
                                         <option key={c.id} value={c.id}>{c.categoryName}</option>
                                     ))}
-                                </select>
+                                </Input>
                             </FormGroup>
                             <Button>Submit</Button>
                         </Form>

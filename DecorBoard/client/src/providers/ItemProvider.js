@@ -28,7 +28,7 @@ export const ItemProvider = (props) => {
                     Authorization: `Bearer ${token}`
                 }
             })
-                .then(resp => resp.json())
+            .then(resp => resp.json())
         )
     }
 
@@ -74,7 +74,7 @@ export const ItemProvider = (props) => {
     }
 
     const deleteItem = (id) => {
-        getToken().then((token) =>
+        return getToken().then((token) =>
             fetch(apiUrl + `/${id}`, {
                 method: "DELETE",
                 headers: {

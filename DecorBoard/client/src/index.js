@@ -20,13 +20,13 @@ ReactDOM.render(
   <React.StrictMode>
     <UserProfileProvider>
       <RoomProvider>
-        <CategoryProvider>
           <ItemProvider>
+        <CategoryProvider>
             <UploadImgProvider>
               <App />
             </UploadImgProvider>
-          </ItemProvider>
         </CategoryProvider>
+          </ItemProvider>
       </RoomProvider>
     </UserProfileProvider>
   </React.StrictMode>,
