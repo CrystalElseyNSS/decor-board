@@ -74,7 +74,7 @@ export const ItemProvider = (props) => {
     }
 
     const deleteItem = (id) => {
-        getToken().then((token) =>
+        return getToken().then((token) =>
             fetch(apiUrl + `/${id}`, {
                 method: "DELETE",
                 headers: {

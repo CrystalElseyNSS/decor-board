@@ -4,14 +4,14 @@ import { ItemContext } from '../../providers/ItemProvider';
 import { UploadImgContext } from '../../providers/UploadImgProvider';
 import { CategoryContext } from '../../providers/CategoryProvider';
 import { RoomContext } from '../../providers/RoomProvider';
-import { Button, Form, FormGroup, Input, Card, CardBody } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Card, CardBody, Select } from 'reactstrap';
 import "./Item.css";
 
 export const EditItemForm = () => {
     const { updateItem, getItemsByRoom, getItemById } = useContext(ItemContext)
     const { addImg } = useContext(UploadImgContext)
     const { currentRoomView, getRoomById } = useContext(RoomContext)
-    const { categories, getCategories } = useContext(CategoryContext)
+    const { categories, getCategories, getCategoryById } = useContext(CategoryContext)
     const history = useHistory()
     const itemName = useRef()
     const itemUrl = useRef()
@@ -23,16 +23,11 @@ export const EditItemForm = () => {
     const { id } = useParams()
     const intId = parseInt(id)
     const [item, setItem] = useState({})
-    
-    
-    
-    // const currentCategory = 
-    // console.log(categories)
-    // console.log(currentCategory)
-    
-    
+    const [currentCategory, setCategory] = useState(0)
+
+    console.log(currentRoomView.id)
+
     useEffect(() => {
-        
         if (currentRoomView.id !== 0) {
             getCategories()
             getRoomById(currentRoomView.id)
@@ -44,11 +39,19 @@ export const EditItemForm = () => {
             getItemsByRoom(0)
         }
         getItemById(intId)
-        .then(setItem)
+            .then(setItem)
         // eslint-disable-next-line  
     }, [])
 
-   
+    useEffect(() => {
+        if (item.hasOwnProperty("itemName")) {
+            getCategoryById(item.categoryId)
+                .then((cat) => setCategory(cat.id))
+        }
+    }, [item])
+    
+    console.log(item)
+    console.log(currentCategory)
 
     const editItem = (e) => {
         if (currentRoomView.id !== 0) {
@@ -56,7 +59,7 @@ export const EditItemForm = () => {
             updateItem({
                 id: id,
                 roomId: roomId,
-                categoryId: parseInt(category.current.value),
+                categoryId: parseInt(currentCategory),
                 itemName: itemName.current.value,
                 imageLocation: selectedFile.name,
                 itemPrice: itemPrice.current.value,
@@ -69,32 +72,25 @@ export const EditItemForm = () => {
             updateItem({
                 id: id,
                 roomId: 0,
-                categoryId: parseInt(category.current.value),
+                categoryId: parseInt(currentCategory),
                 itemName: itemName.current.value,
                 imageLocation: selectedFile.name,
                 itemPrice: itemPrice.current.value,
                 itemUrl: itemUrl.current.value
             })
-                .then(addImg(selectedFile))
-                .then(() => history.push(`/stockRoom`))
+            .then(addImg(selectedFile))
+            .then(() => history.push(`/stockRoom`))
         }
     }
-
+    
     const onFileChange = (e) => {
-        if (selectedFile.name !== item.imageLocation) {
         setSelectedFile(e.target.files[0])
-        } else {
-            setSelectedFile(item.imageLocation)
-        }
     }
-
-    // if (!currentCategory) {
-    //     return null
-    // }
-
-
-
-
+    
+    const handleChange = (evt) => {
+        setCategory(evt.target.value)
+    }
+    
     return (
         <>
             <section className="itemForm">
@@ -139,17 +135,18 @@ export const EditItemForm = () => {
                                 />
                             </FormGroup>
                             <FormGroup className="form--field">
-                                <select
+                                <Input
                                     required
-                                 
-                                    defaultValue={categories.find(c => c.Id === item.categoryId).categoryName}
+                                    type="select" 
+                                    value={currentCategory}
                                     ref={category}
+                                    onChange={handleChange}
                                 >
-                                    <option>Select a Category</option>
+                                    <option key="0" value="0">Select a Category</option>
                                     {categories.map(c => (
                                         <option key={c.id} value={c.id}>{c.categoryName}</option>
                                     ))}
-                                </select>
+                                </Input>
                             </FormGroup>
                             <Button>Submit</Button>
                         </Form>

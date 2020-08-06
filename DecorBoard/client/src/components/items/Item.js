@@ -14,11 +14,11 @@ export const Item = ({ item }) => {
     const deleteRoomItem = (item) => {
         if (item.roomId === 0) {
             deleteItem(item?.id)
-            getItemsByRoom(0)
+            .then(() => getItemsByRoom(0))
         } else {
             deleteItem(item.id)
-            getItemsByRoom(currentRoomView.id)
-            history.push(`/room/room/${item.roomId}`)
+            .then(() => getItemsByRoom(currentRoomView.id))
+            // history.push(`/room/room/${item.roomId}`)
         }
     }
     

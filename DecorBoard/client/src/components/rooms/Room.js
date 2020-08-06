@@ -6,7 +6,7 @@ import { ItemContext } from '../../providers/ItemProvider';
 import { Item } from '../items/Item';
 import './Room.css';
 
-export const Room = ({ item }) => {
+export const Room = () => {
 
     const { currentRoomView, getRoomById, deleteRoom } = useContext(RoomContext)
     const { items, getItemsByRoom, itemTotal, getItemTotal } = useContext(ItemContext)
@@ -14,16 +14,21 @@ export const Room = ({ item }) => {
 
     useEffect(() => {
         getRoomById(id)
-        getItemTotal(id)
+        .then(() => getItemTotal(id))
         // eslint-disable-next-line   
     }, [])
 
+    useEffect(() => {
+        getItemTotal(currentRoomView.id)
+    }, [items])
 
     useEffect(() => {
         getItemsByRoom(currentRoomView.id)
-        getItemTotal(currentRoomView.id)
+        .then(() => getItemTotal(currentRoomView.id))
         // eslint-disable-next-line   
     }, [currentRoomView])
+
+    console.log(currentRoomView.id)
 
     return (
         <>
