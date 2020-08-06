@@ -10,9 +10,11 @@ import { AddItemForm } from '../items/AddItemForm';
 import { EditItemForm } from '../items/EditItemForm';
 import { StockRoom } from '../rooms/StockRoom';
 import { StockItemForm } from '../items/StockItemForm';
+import { Welcome } from './Welcome';
 import '../views/Layout.css'
 
 export const ApplicationViews = () => {
+  
   const { isLoggedIn } = useContext(UserProfileContext)
 
   return (
@@ -21,7 +23,7 @@ export const ApplicationViews = () => {
         <Switch>
 
           <Route path="/" exact>
-            {isLoggedIn ? <p className="welcome">Welcome!</p> : <Redirect to="/login" />}
+            {isLoggedIn ? <Welcome /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/login">

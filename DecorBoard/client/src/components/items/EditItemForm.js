@@ -39,7 +39,7 @@ export const EditItemForm = () => {
             getItemsByRoom(0)
         }
         getItemById(intId)
-            .then(setItem)
+        .then(setItem)
         // eslint-disable-next-line  
     }, [])
 
@@ -50,8 +50,6 @@ export const EditItemForm = () => {
         }
     }, [item])
     
-    console.log(item)
-    console.log(currentCategory)
 
     const editItem = (e) => {
         if (currentRoomView.id !== 0) {

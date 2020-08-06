@@ -1,0 +1,68 @@
+.navContainer {
+    grid-column: 1;
+    justify-content: center;
+    width: 15%;
+}
+
+.navColumn {
+    justify-content: center;
+    padding: 0px
+}
+
+.navRow {
+    border: 4px ridge whitesmoke;
+    background-color: rgb(240, 235, 235);
+    box-shadow: 0px 12px 18px -6px rgba(95, 92, 92, 0.5);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    height: 90px;
+    justify-content: center;
+    margin: 0px auto 15px auto;
+    overflow: hidden;
+    padding: 10px;
+    width: 90px;
+}
+
+.navText {
+    color: gray;
+    font-weight: bolder;
+    text-decoration: none !important;
+}
+
+@keyframes bounce {
+    0%, 20%, 60%, 100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    40% {
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+    80% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+.navRow:hover {
+    animation: bounce 1s;
+    background-color: #fcbf63;
+    box-shadow: 0px 18px 25px -6px rgba(34, 33, 33, 0.8);
+    text-decoration: none !important;
+}
+
+.navRow:active {
+    background-color: lightgrey;
+}
+
+.logout {
+    color: gray !important;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    margin-left: 12px;
+}
