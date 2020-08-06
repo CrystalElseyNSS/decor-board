@@ -24,10 +24,10 @@ export const Register = () => {
   }
 
   return (
-    <Form onSubmit={registerClick}>
+    <Form className="loginDiv" onSubmit={registerClick}>
       <fieldset>
         <FormGroup>
-          <Label htmlFor="firstName">Fist Name</Label>
+          <Label htmlFor="firstName">First Name</Label>
           <Input id="firstName" type="text" onChange={e => setFirstName(e.target.value)} />
         </FormGroup>
         <FormGroup>

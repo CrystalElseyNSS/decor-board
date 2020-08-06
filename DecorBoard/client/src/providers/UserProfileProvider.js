@@ -27,12 +27,15 @@ export const UserProfileProvider = (props) => {
   const logout = () => {
     return firebase.auth().signOut()
       .then(() => sessionStorage.clear())
+      .then(() => localStorage.clear())
+      .then(() => setIsLoggedIn(false))
   }
 
   const register = (userProfile, password) => {
     return firebase.auth().createUserWithEmailAndPassword(userProfile.email, password)
       .then((createResponse) => saveUser({ ...userProfile, firebaseUserId: createResponse.user.uid }))
       .then((savedUserProfile) => sessionStorage.setItem("userProfile", JSON.stringify(savedUserProfile)))
+      .then(() => setIsLoggedIn(true))
   }
 
   const getToken = () => firebase.auth().currentUser.getIdToken()

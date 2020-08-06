@@ -22,12 +22,6 @@
     width: 90%;
 }
 
-.navContainer {
-    grid-column: 1;
-    justify-content: center;
-    width: 15%;
-}
-
 .viewContainer {
     display: flex;
     flex: 2;
@@ -36,13 +30,8 @@
     width: 65%;
 }
 
-.navColumn {
-    justify-content: center;
-    padding: 0px
-}
-
 .loginDiv {
-    width: 75%;
+    width: 60%;
     margin: auto;
 }
 

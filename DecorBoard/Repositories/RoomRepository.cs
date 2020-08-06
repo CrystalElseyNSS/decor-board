@@ -48,6 +48,7 @@ namespace DecorBoard.Repositories
             var relatedItems = _context.Item.Where(i => i.RoomId == id);
             _context.Item.RemoveRange(relatedItems);
 
+
             var room = GetById(id);
             _context.Room.Remove(room);
             _context.SaveChanges();

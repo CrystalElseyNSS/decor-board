@@ -4,9 +4,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 // Component imports: 
 import { UserProfileContext } from './providers/UserProfileProvider';
 import { Header } from './components/views/Header';
-import { NavBar } from './components/rooms/NavBar';
+import { NavBar } from './components/nav/NavBar';
 import { ApplicationViews } from './components/views/ApplicationViews';
-// Design imports:
+// Design import:
 import './components/views/Layout.css';
 
 export const App = () => {

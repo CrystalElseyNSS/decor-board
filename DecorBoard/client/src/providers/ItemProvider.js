@@ -7,6 +7,7 @@ export const ItemProvider = (props) => {
     const { getToken } = useContext(UserProfileContext)
     const [items, setItems] = useState([])
     const [itemTotal, setItemTotal] = useState(0)
+    const [currentItem, setItem] = useState({})
 
     const getItemsByRoom = (roomId) => {
         return getToken().then((token) =>
@@ -86,7 +87,7 @@ export const ItemProvider = (props) => {
     }
 
     return (
-        <ItemContext.Provider value={{ items, getItemsByRoom, addItem, updateItem, deleteItem, getItemById, getItemTotal, itemTotal }}>
+        <ItemContext.Provider value={{ items, getItemsByRoom, addItem, updateItem, deleteItem, getItemById, getItemTotal, itemTotal, currentItem }}>
             {props.children}
         </ItemContext.Provider>
     )

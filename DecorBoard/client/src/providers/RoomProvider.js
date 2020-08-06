@@ -63,7 +63,7 @@ export const RoomProvider = (props) => {
     }
 
     const deleteRoom = (id) => {
-        getToken().then((token) =>
+        return getToken().then((token) =>
             fetch(apiUrl + `/${id}`, {
                 method: "DELETE",
                 headers: {
@@ -71,7 +71,7 @@ export const RoomProvider = (props) => {
                     "Content-Type": "application/json"
                 },
             })
-                .then(() => getRooms())
+                .then(getRooms)
         )
     }
 

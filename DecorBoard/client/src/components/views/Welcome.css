@@ -1,0 +1,99 @@
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
+    height: 400px;
+}
+
+.gridItem {
+    border: 1px solid white;
+    border-radius: 50%;
+    color: white;
+    font-size: 40px;
+    font-weight: bolder;
+    height: 60px;
+    width: 60px;
+    background: rgb(173, 89, 155);
+}
+
+/* ... */
+.gridItem {
+    /* ... */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gridItem:hover {
+    opacity: 1;
+}
+
+/* ... */
+.gridItem {
+    /* ... */
+    transition: opacity 2s ease 0.4s, transform 0.8s ease;
+    transform: scale(1);
+}
+
+.gridItem:hover {
+    /* ... */
+    transition: opacity 0.2s ease;
+    transform: scale(1.04);
+}
+
+/* ... */
+.gridItem {
+    /* ... */
+    transition: opacity 2s ease 0.4s, transform 0.8s ease, transform 0.12s ease;
+    transform: scale(1);
+}
+
+.gridItem:hover {
+    /* ... */
+    transition: opacity 0.2s ease;
+    transform: scale(1.08);
+}
+
+.gridItem2 {
+    border: 1px solid white;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    background: #fcbf63;
+}
+
+/* ... */
+.gridItem2 {
+    /* ... */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gridItem2:hover {
+    opacity: 1;
+}
+
+/* ... */
+.gridItem2 {
+    /* ... */
+    transition: opacity 2s ease 0.4s, transform 0.8s ease;
+    transform: scale(1);
+}
+
+.gridItem2:hover {
+    /* ... */
+    transition: opacity 0.2s ease;
+    transform: scale(1.04);
+}
+
+/* ... */
+.gridItem2 {
+    /* ... */
+    transition: opacity 2s ease 0.4s, transform 0.8s ease, transform 0.12s ease;
+    transform: scale(1);
+}
+
+.gridItem2:hover {
+    /* ... */
+    transition: opacity 0.2s ease;
+    transform: scale(1.08);
+}
