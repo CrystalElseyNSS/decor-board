@@ -1,6 +1,6 @@
 # Decor Board
 
-Decor Board is an application for the decor-bored, designed to serve as a vision board, shopping list, and budget tracker for the DIY decorator.
+Decor Board is an application for the decor-bored, designed to serve as a vision board, shopping list, and budget tracker for the DIY decorator. Watch a demo of this project here: https://www.youtube.com/watch?v=bse6Zi6Ba6g&t=2s
 
 ### Getting Started
 
@@ -39,3 +39,4 @@ To quickly login and access the dummy data, login using
 - dbdiagram
 - Sketchboard
 - Canva
+- Firebase for authentication
