@@ -23,7 +23,7 @@ Decor Board is an application for the decor-bored, designed to serve as a vision
 
 6. Rename the .env.local.example file to remove the .example extension. This file should now just be called .env.local
 
-7. Install your dependencies by running npm install from the same directory as your package.json file
+7. Install your dependencies by running `npm install` from the same directory as your package.json file
 
 ### Login
 
