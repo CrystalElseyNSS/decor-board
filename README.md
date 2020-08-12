@@ -6,9 +6,8 @@ Decor Board is an application for the decor-bored, designed to serve as a vision
 
 1. Fork and clone this repository
 2. Run a SQL querty with the "Create" file in this repo
-Skip to Login, or...
-3. Register an account
-4. Start designing!
+3. Skip to Login, or...
+4. Register an account and start designing!
 
 ### Login
 
