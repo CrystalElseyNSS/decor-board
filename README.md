@@ -4,7 +4,7 @@ Decor Board is an application for the decor-bored, designed to serve as a vision
 
 ### Getting Started
 
-1. Pull down this repo
+1. Fork and clone this repository
 
 2. Run the two scripts that are in the SQL folder. These will create the DecorBoard database and add some test data
 
